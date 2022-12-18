@@ -167,9 +167,6 @@
   vim.keymap.set('n', 'L', ':bnext<CR>', {silent = true})
   vim.keymap.set('n', 'H', ':bprevious<CR>', {silent = true})
 
-  local custom = require('custom')
-  vim.keymap.set('n', 'xs', custom.select, {silent = true})
-
   --remaps for react extract
   vim.keymap.set({ "n" }, "<Leader>rp", ":lua require('custom').extract_to_new_file()<CR>",{silent = true,expr=false})
   vim.keymap.set({ "n" }, "<Leader>rc", ":lua require('custom').extract_to_current_file()<CR>",{silent = true, expr = false})
