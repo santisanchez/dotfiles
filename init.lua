@@ -109,6 +109,11 @@
   -- System Clipboard
   vim.opt.clipboard = 'unnamedplus'
 
+  -- Offset on scroll
+  vim.opt.scrolloff = 5
+  vim.opt.smartindent = true
+  vim.opt.cursorline = true
+
   -- Set highlight on search
   vim.o.hlsearch = false
 
@@ -163,6 +168,12 @@
   vim.keymap.set('n', '<C-j>', '<C-w>j>', {silent = true})
   vim.keymap.set('n', '<C-k>', '<C-w>k>', {silent = true})
   vim.keymap.set('n', '<C-l>', '<C-w>l>', {silent = true})
+
+  -- Center to the cursor on screen movement
+  vim.keymap.set('n', 'n', 'nzz', {silent = true})
+  vim.keymap.set('n', 'N', 'Nzz', {silent = true})
+  vim.keymap.set('n', '<C-o>', '<C-o>zz', {silent = true})
+  vim.keymap.set('n', '<C-i>', '<C-i>zz', {silent = true})
 
   vim.keymap.set('n', 'L', ':bnext<CR>', {silent = true})
   vim.keymap.set('n', 'H', ':bprevious<CR>', {silent = true})
