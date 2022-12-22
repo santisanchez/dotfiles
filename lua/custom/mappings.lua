@@ -6,6 +6,8 @@
   vim.keymap.set('n', '<C-l>', '<C-w>l>', {silent = true})
 
   -- Center to the cursor on screen movement
+  vim.keymap.set('n', '<C-f>', '<C-f>zz', {silent = true})
+  vim.keymap.set('n', '<C-b>', '<C-b>zz', {silent = true})
   vim.keymap.set('n', 'n', 'nzz', {silent = true})
   vim.keymap.set('n', 'N', 'Nzz', {silent = true})
   vim.keymap.set('n', '<C-o>', '<C-o>zz', {silent = true})
