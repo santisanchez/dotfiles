@@ -35,18 +35,6 @@
         pcall(require('nvim-treesitter.install').update { with_sync = true })
       end,
     }
-    use { 'nvim-treesitter/playground' }
-
-    use {
-      "ThePrimeagen/refactoring.nvim",
-      requires = {
-        {"nvim-lua/plenary.nvim"},
-        {"nvim-treesitter/nvim-treesitter"}
-      }
-    }
-
-    use {"napmn/react-extract.nvim"}
-
 
     use { -- Additional text objects via treesitter
       'nvim-treesitter/nvim-treesitter-textobjects',
@@ -59,7 +47,6 @@
     use 'lewis6991/gitsigns.nvim'
 
     use 'navarasu/onedark.nvim' -- Theme inspired by Atom
-    use 'folke/tokyonight.nvim'
     use 'nvim-lualine/lualine.nvim' -- Fancier statusline
     use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
     use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
@@ -108,6 +95,8 @@
 
   -- System Clipboard
   vim.opt.clipboard = 'unnamedplus'
+
+  vim.opt.showtabline = 2
 
   -- Offset on scroll
   vim.opt.scrolloff = 5
@@ -162,32 +151,8 @@
   vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
   vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
-  -- My Mappings
-  vim.keymap.set('n', '<C-s>', ':w<CR>', {silent = true})
-  vim.keymap.set('n', '<C-h>', '<C-w>h>', {silent = true})
-  vim.keymap.set('n', '<C-j>', '<C-w>j>', {silent = true})
-  vim.keymap.set('n', '<C-k>', '<C-w>k>', {silent = true})
-  vim.keymap.set('n', '<C-l>', '<C-w>l>', {silent = true})
-
-  -- Center to the cursor on screen movement
-  vim.keymap.set('n', 'n', 'nzz', {silent = true})
-  vim.keymap.set('n', 'N', 'Nzz', {silent = true})
-  vim.keymap.set('n', '<C-o>', '<C-o>zz', {silent = true})
-  vim.keymap.set('n', '<C-i>', '<C-i>zz', {silent = true})
-
-  vim.keymap.set('n', 'L', ':bnext<CR>', {silent = true})
-  vim.keymap.set('n', 'H', ':bprevious<CR>', {silent = true})
-
-  --remaps for react extract
-  vim.keymap.set({ "n" }, "<Leader>rp", ":lua require('custom').extract_to_new_file()<CR>",{silent = true,expr=false})
-  vim.keymap.set({ "n" }, "<Leader>rc", ":lua require('custom').extract_to_current_file()<CR>",{silent = true, expr = false})
-  -- Remaps for the refactoring operations currently offered by the plugin
-
-  vim.keymap.set("v",
-    "<leader>rr",
-    "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
-    { noremap = true }
-  )
+  pcall(require, 'custom.mappings')
+  pcall(require('custom.setup_plugins'),'setup')
 
   -- [[ Highlight on yank ]]
   -- See `:help vim.highlight.on_yank()`
@@ -200,9 +165,6 @@
     pattern = '*',
   })
 
-
-  local actions = require('telescope.actions')
-
   -- Set lualine as statusline
   -- See `:help lualine.txt`
   require('lualine').setup {
@@ -213,12 +175,6 @@
       section_separators = '',
     },
   }
-
-  --Enable refactoring
-  require('refactoring').setup({})
-
-  --Enable react-extract
-  require("react-extract").setup()
 
   -- Enable Comment.nvim
   require('Comment').setup()
@@ -248,7 +204,7 @@
     defaults = {
       mappings = {
         i = {
-          ['esc'] = actions.close,
+          ['esc'] = require('telescope.actions').close,
           ['<C-u>'] = false,
           ['<C-d>'] = false,
         },

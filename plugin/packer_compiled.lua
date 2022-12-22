@@ -208,6 +208,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/santiagoosorio/.local/share/nvim/site/pack/packer/start/vim-sleuth",
     url = "https://github.com/tpope/vim-sleuth"
+  },
+  ["yode-nvim"] = {
+    loaded = true,
+    path = "/Users/santiagoosorio/.local/share/nvim/site/pack/packer/start/yode-nvim",
+    url = "https://github.com/hoschi/yode-nvim"
   }
 }
 
