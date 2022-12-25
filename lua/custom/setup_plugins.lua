@@ -1,13 +1,11 @@
-local M = {}
+return function()
+    --Enable refactoring
+    require('refactoring').setup({})
 
-M.setup = function()
-  --Enable refactoring
-  require('refactoring').setup({})
+    --Enable react-extract
+    require("react-extract").setup()
 
-  --Enable react-extract
-  require("react-extract").setup()
+    -- focused code edit
+    require('yode-nvim').setup({})
 
-  require('yode-nvim').setup({})
 end
-
-return M

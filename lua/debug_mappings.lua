@@ -17,11 +17,15 @@ M.push = function (name, mode, mappings)
   for lhs, rhs in pairs(mappings) do
     local existing = find_mapping(maps, lhs)
     if existing then
-      table.insert(existing_maps, existing)
+      existing_maps[lhs] = existing
     end
   end
 
-  M._stack[name] = existing_maps
+  M._stack[name] = {
+    mode = mode,
+    existing = existing_maps,
+    mappings = mappings
+  }
 
   for lhs, rhs in pairs(mappings) do
     vim.keymap.set(mode,lhs, rhs)
@@ -29,6 +33,16 @@ M.push = function (name, mode, mappings)
 end
 
 M.pop = function (name)
+  local state = M._stack[name]
+  M._stack[name] = nil
+
+  for lhs, rhs in pairs(state.mappings) do
+    if state.existing[lhs] then
+      --Handle mappings that existed
+    else
+      vim.keymap.del(state.mode,lhs,rhs)
+    end
+  end
 end
 
 M.push("debug_mode", "n", {

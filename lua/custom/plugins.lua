@@ -7,8 +7,6 @@ local plugins =function(use)
         'folke/tokyonight.nvim'
     }
 
-    
-
     use { 'nvim-treesitter/playground' }
 
     use {
