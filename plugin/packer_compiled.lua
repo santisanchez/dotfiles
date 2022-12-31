@@ -84,6 +84,12 @@ _G.packer_plugins = {
     path = "/Users/santiagoosorio/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["bufferline.nvim"] = {
+    config = { "\27LJ\2\n8\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\15bufferline\frequire\0" },
+    loaded = true,
+    path = "/Users/santiagoosorio/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
+    url = "https://github.com/akinsho/bufferline.nvim"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/Users/santiagoosorio/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
@@ -99,6 +105,11 @@ _G.packer_plugins = {
     path = "/Users/santiagoosorio/.local/share/nvim/site/pack/packer/start/fidget.nvim",
     url = "https://github.com/j-hui/fidget.nvim"
   },
+  ["friendly-snippets"] = {
+    loaded = true,
+    path = "/Users/santiagoosorio/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+    url = "https://github.com/rafamadriz/friendly-snippets"
+  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/Users/santiagoosorio/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
@@ -108,6 +119,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/santiagoosorio/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
+  },
+  ["laravel.nvim"] = {
+    config = { "\27LJ\2\n{\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\4\14split_cmd\rvertical\19bind_telescope\2\16split_width\3x\17ask_for_args\2\nsetup\flaravel\frequire\0" },
+    loaded = true,
+    path = "/Users/santiagoosorio/.local/share/nvim/site/pack/packer/start/laravel.nvim",
+    url = "https://github.com/adalessa/laravel.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
@@ -124,6 +141,17 @@ _G.packer_plugins = {
     path = "/Users/santiagoosorio/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+  ["neodev.nvim"] = {
+    loaded = true,
+    path = "/Users/santiagoosorio/.local/share/nvim/site/pack/packer/start/neodev.nvim",
+    url = "https://github.com/folke/neodev.nvim"
+  },
+  ["null-ls.nvim"] = {
+    config = { "\27LJ\2\n’\2\0\0\5\2\15\0 6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\r\0004\3\6\0-\4\0\0009\4\3\0049\4\4\0049\4\5\4>\4\1\3-\4\0\0009\4\3\0049\4\6\0049\4\a\4>\4\2\3-\4\0\0009\4\3\0049\4\b\0049\4\t\4>\4\3\3-\4\0\0009\4\3\0049\4\n\0049\4\v\4>\4\4\3-\4\1\0009\4\f\4>\4\5\3=\3\14\2B\0\2\1K\0\1\0\0\0\1\0\fsources\1\0\0\18relationships\16refactoring\17code_actions\nspell\15completion\veslint\16diagnostics\vstylua\15formatting\rbuiltins\nsetup\fnull-ls\frequire\0" },
+    loaded = true,
+    path = "/Users/santiagoosorio/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
+    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/Users/santiagoosorio/.local/share/nvim/site/pack/packer/start/nvim-cmp",
@@ -133,6 +161,17 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/santiagoosorio/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-notify"] = {
+    loaded = true,
+    path = "/Users/santiagoosorio/.local/share/nvim/site/pack/packer/start/nvim-notify",
+    url = "https://github.com/rcarriga/nvim-notify"
+  },
+  ["nvim-tree.lua"] = {
+    config = { "\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14nvim-tree\frequire\0" },
+    loaded = true,
+    path = "/Users/santiagoosorio/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
+    url = "https://github.com/nvim-tree/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     loaded = true,
@@ -145,6 +184,11 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/santiagoosorio/.local/share/nvim/site/pack/packer/opt/nvim-treesitter-textobjects",
     url = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
+  },
+  ["nvim-web-devicons"] = {
+    loaded = true,
+    path = "/Users/santiagoosorio/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
   ["onedark.nvim"] = {
     loaded = true,
@@ -167,11 +211,13 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["react-extract.nvim"] = {
+    config = { "\27LJ\2\n;\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\18react-extract\frequire\0" },
     loaded = true,
     path = "/Users/santiagoosorio/.local/share/nvim/site/pack/packer/start/react-extract.nvim",
     url = "https://github.com/napmn/react-extract.nvim"
   },
   ["refactoring.nvim"] = {
+    config = { "\27LJ\2\n=\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\16refactoring\frequire\0" },
     loaded = true,
     path = "/Users/santiagoosorio/.local/share/nvim/site/pack/packer/start/refactoring.nvim",
     url = "https://github.com/ThePrimeagen/refactoring.nvim"
@@ -210,6 +256,7 @@ _G.packer_plugins = {
     url = "https://github.com/tpope/vim-sleuth"
   },
   ["yode-nvim"] = {
+    config = { "\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14yode-nvim\frequire\0" },
     loaded = true,
     path = "/Users/santiagoosorio/.local/share/nvim/site/pack/packer/start/yode-nvim",
     url = "https://github.com/hoschi/yode-nvim"
@@ -217,6 +264,34 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: laravel.nvim
+time([[Config for laravel.nvim]], true)
+try_loadstring("\27LJ\2\n{\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\4\14split_cmd\rvertical\19bind_telescope\2\16split_width\3x\17ask_for_args\2\nsetup\flaravel\frequire\0", "config", "laravel.nvim")
+time([[Config for laravel.nvim]], false)
+-- Config for: null-ls.nvim
+time([[Config for null-ls.nvim]], true)
+try_loadstring("\27LJ\2\n’\2\0\0\5\2\15\0 6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\r\0004\3\6\0-\4\0\0009\4\3\0049\4\4\0049\4\5\4>\4\1\3-\4\0\0009\4\3\0049\4\6\0049\4\a\4>\4\2\3-\4\0\0009\4\3\0049\4\b\0049\4\t\4>\4\3\3-\4\0\0009\4\3\0049\4\n\0049\4\v\4>\4\4\3-\4\1\0009\4\f\4>\4\5\3=\3\14\2B\0\2\1K\0\1\0\0\0\1\0\fsources\1\0\0\18relationships\16refactoring\17code_actions\nspell\15completion\veslint\16diagnostics\vstylua\15formatting\rbuiltins\nsetup\fnull-ls\frequire\0", "config", "null-ls.nvim")
+time([[Config for null-ls.nvim]], false)
+-- Config for: yode-nvim
+time([[Config for yode-nvim]], true)
+try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14yode-nvim\frequire\0", "config", "yode-nvim")
+time([[Config for yode-nvim]], false)
+-- Config for: bufferline.nvim
+time([[Config for bufferline.nvim]], true)
+try_loadstring("\27LJ\2\n8\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\15bufferline\frequire\0", "config", "bufferline.nvim")
+time([[Config for bufferline.nvim]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14nvim-tree\frequire\0", "config", "nvim-tree.lua")
+time([[Config for nvim-tree.lua]], false)
+-- Config for: react-extract.nvim
+time([[Config for react-extract.nvim]], true)
+try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\18react-extract\frequire\0", "config", "react-extract.nvim")
+time([[Config for react-extract.nvim]], false)
+-- Config for: refactoring.nvim
+time([[Config for refactoring.nvim]], true)
+try_loadstring("\27LJ\2\n=\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\16refactoring\frequire\0", "config", "refactoring.nvim")
+time([[Config for refactoring.nvim]], false)
 -- Conditional loads
 time([[Conditional loading of telescope-fzf-native.nvim]], true)
   require("packer.load")({"telescope-fzf-native.nvim"}, {}, _G.packer_plugins)
