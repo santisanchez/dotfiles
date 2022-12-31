@@ -1,6 +1,5 @@
 local null_ls = require("null-ls")
 local laravel_actions = require("laravel.code-actions")
-local colorscheme = 'onedark'
 
 -- System Clipboard
 vim.opt.clipboard = 'unnamedplus'
@@ -15,12 +14,10 @@ vim.opt.cursorline = true
 -- Relative line numbers
 vim.wo.relativenumber = true
 
-vim.cmd("colorscheme " .. colorscheme)
+vim.cmd.colorscheme "onedark" -- catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 
-
-pcall(require("telescope").load_extension, 'refactoring')
-pcall(require('telescope').load_extension, 'laravel')
-
+local actions = require "telescope.actions"
+local fb_actions = require "telescope".extensions.file_browser.actions
 require('telescope').setup {
   extensions = {
     fzf = {
@@ -29,10 +26,31 @@ require('telescope').setup {
       override_file_sorter = true, -- override the file sorter
       case_mode = "smart_case",
     },
+    file_browser = {
+      theme = "ivy",
+      -- disables netrw and use telescope-file-browser in its place
+      hijack_netrw = true,
+      mappings = {
+        ["i"] = {
+          ["<C-a>"] = fb_actions.create,
+          ["<C-d>"] = fb_actions.remove,
+          ["<C-x>"] = fb_actions.move,
+          ["<C-r>"] = fb_actions.rename,
+          ["<C-h>"] = fb_actions.goto_cwd,
+          ["<C-p>"] = fb_actions.goto_parent_dir,
+
+          ["<C-j>"] = actions.move_selection_next,
+          ["<C-k>"] = actions.move_selection_previous
+        },
+        ["n"] = {
+          -- your custom normal mode mappings
+        },
+      },
+    },
   },
   pickers = {
     find_files = {
-      theme = "dropdown",
+      theme = "ivy",
     }
   },
   defaults = {
@@ -44,6 +62,10 @@ require('telescope').setup {
     },
   },
 }
+
+pcall(require("telescope").load_extension, 'refactoring')
+pcall(require('telescope').load_extension, 'laravel')
+pcall(require("telescope").load_extension, "file_browser")
 
 require('nvim-treesitter.configs').setup {
   ensure_installed = { 'php', 'javascript', 'tsx', 'typescript', 'help' },
@@ -89,3 +111,28 @@ require('null-ls').setup({
   },
 })
 pcall(require, 'custom.mappings')
+-- Disable some builtin vim plugins
+local disabled_built_ins = {
+  "2html_plugin",
+  "getscript",
+  "getscriptPlugin",
+  "gzip",
+  "logipat",
+  "netrw",
+  "netrwPlugin",
+  "netrwSettings",
+  "netrwFileHandlers",
+  -- "matchit",
+  "matchparen",
+  "tar",
+  "tarPlugin",
+  "rrhelper",
+  "vimball",
+  "vimballPlugin",
+  "zip",
+  "zipPlugin",
+}
+
+for _, plugin in pairs(disabled_built_ins) do
+  vim.g["loaded_" .. plugin] = 1
+end
