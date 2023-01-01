@@ -1,9 +1,6 @@
-local null_ls = require("null-ls")
-local laravel_actions = require("laravel.code-actions")
-
 -- System Clipboard
-vim.opt.clipboard = 'unnamedplus'
-
+-- vim.opt.clipboard = 'unnamedplus'
+vim.cmd [[colorscheme tokyonight-storm]]
 vim.opt.showtabline = 2
 
 -- Offset on scroll
@@ -13,8 +10,6 @@ vim.opt.cursorline = true
 
 -- Relative line numbers
 vim.wo.relativenumber = true
-
-vim.cmd.colorscheme "onedark" -- catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 
 local actions = require "telescope.actions"
 local fb_actions = require "telescope".extensions.file_browser.actions
@@ -29,7 +24,7 @@ require('telescope').setup {
     file_browser = {
       theme = "ivy",
       -- disables netrw and use telescope-file-browser in its place
-      hijack_netrw = true,
+      hijack_netrw = false,
       mappings = {
         ["i"] = {
           ["<C-a>"] = fb_actions.create,
@@ -39,8 +34,6 @@ require('telescope').setup {
           ["<C-h>"] = fb_actions.goto_cwd,
           ["<C-p>"] = fb_actions.goto_parent_dir,
 
-          ["<C-j>"] = actions.move_selection_next,
-          ["<C-k>"] = actions.move_selection_previous
         },
         ["n"] = {
           -- your custom normal mode mappings
@@ -58,6 +51,8 @@ require('telescope').setup {
       i = {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous
       },
     },
   },
@@ -66,6 +61,7 @@ require('telescope').setup {
 pcall(require("telescope").load_extension, 'refactoring')
 pcall(require('telescope').load_extension, 'laravel')
 pcall(require("telescope").load_extension, "file_browser")
+pcall(require("telescope").load_extension, 'harpoon')
 
 require('nvim-treesitter.configs').setup {
   ensure_installed = { 'php', 'javascript', 'tsx', 'typescript', 'help' },
@@ -101,16 +97,18 @@ require("luasnip.loaders.from_vscode").lazy_load({ paths = {
   "~/.local/share/nvim/site/pack/packer/start/friendly-snippets"
 } })
 
+local null_ls = require("null-ls")
+local laravel_actions = require("laravel.code-actions")
 require('null-ls').setup({
   sources = {
-    null_ls.builtins.formatting.stylua,
-    null_ls.builtins.diagnostics.eslint,
-    null_ls.builtins.completion.spell,
+    null_ls.builtins.formatting.prettier,
     null_ls.builtins.code_actions.refactoring,
+    null_ls.builtins.code_actions.gitsigns,
     laravel_actions.relationships
   },
 })
 pcall(require, 'custom.mappings')
+require('leap').add_default_mappings()
 -- Disable some builtin vim plugins
 local disabled_built_ins = {
   "2html_plugin",

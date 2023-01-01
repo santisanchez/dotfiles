@@ -1,6 +1,13 @@
 local ts_utils = require("nvim-treesitter.ts_utils")
 local M = {}
 
+local file_history = function ()
+  vim.cmd "only"
+  vim.cmd "GcLog"
+end
+
+M.file_history = file_history
+
 local get_parent = function (node)
   local prev = ts_utils.get_previous_node(node, true, true)
   while(prev:parent() == node:parent()) do

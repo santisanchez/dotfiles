@@ -1,6 +1,5 @@
--- pcall(require, 'custom.setup_plugins')
--- pcall(require, 'custom.mappings')
 local plugins = function(use)
+    use { 'folke/tokyonight.nvim' }
     use { "nathom/filetype.nvim" }
     use {
         'hoschi/yode-nvim',
@@ -26,7 +25,7 @@ local plugins = function(use)
         end
     }
 
-    use({ "adalessa/laravel.nvim",
+    use { "adalessa/laravel.nvim",
         requires = {
             { "nvim-lua/plenary.nvim" },
             { "rcarriga/nvim-notify" },
@@ -34,13 +33,13 @@ local plugins = function(use)
         },
         config = function()
             require("laravel").setup({
-                split_cmd = "vertical",
-                split_width = 120,
+                split_cmd = "horizontal",
+                split_height = 10,
                 bind_telescope = true,
                 ask_for_args = true,
             })
         end
-    })
+    }
 
     use { "napmn/react-extract.nvim", config = function()
         require("react-extract").setup()
@@ -58,21 +57,29 @@ local plugins = function(use)
 
 
     use { "nvim-telescope/telescope-file-browser.nvim" }
-    -- use {
-    --     'nvim-tree/nvim-tree.lua',
-    --     requires = {
-    --         'nvim-tree/nvim-web-devicons', -- optional, for file icons
-    --     },
-    --     tag = 'nightly', -- optional, updated every week. (see issue #1193)
-    --     config = function ()
-    --         require("nvim-tree").setup()
-    --     end
-    -- }
 
     use { "jose-elias-alvarez/null-ls.nvim",
         requires = {
             { "nvim-lua/plenary.nvim" }
         }
+    }
+
+    use { "ggandor/leap.nvim" }
+
+    use {
+        "ThePrimeagen/harpoon",
+        requires = { { 'nvim-lua/plenary.nvim' } },
+        config = function()
+
+        end
+    }
+
+    use {
+        "nvim-telescope/telescope-frecency.nvim",
+        config = function()
+            require "telescope".load_extension("frecency")
+        end,
+        requires = { "kkharji/sqlite.lua" }
     }
 end
 

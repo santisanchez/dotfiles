@@ -50,7 +50,6 @@ local plugins = function(use)
 
   -- Git related plugins
   use 'tpope/vim-fugitive'
-  use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
 
   use 'navarasu/onedark.nvim' -- Theme inspired by Atom
@@ -127,7 +126,7 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
--- vim.cmd [[colorscheme onedark]]
+vim.cmd [[colorscheme onedark]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -163,7 +162,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 require('lualine').setup {
   options = {
     icons_enabled = false,
-    theme = 'onedark',
+    theme = 'tokyonight',
     component_separators = '|',
     section_separators = '',
   },
@@ -175,22 +174,47 @@ require('Comment').setup()
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
 require('indent_blankline').setup {
-  char = '┊',
   show_trailing_blankline_indent = false,
+  show_current_context = true,
+  -- show_current_context_start = true,
 }
 
 -- Gitsigns
 -- See `:help gitsigns.txt`
 require('gitsigns').setup {
   signs = {
-    add = { text = '+' },
-    change = { text = '~' },
-    delete = { text = '_' },
-    topdelete = { text = '‾' },
-    changedelete = { text = '~' },
+    add = { text = '▍' },
+    change = { text = '▍' },
+    delete = { text = '▍' },
+    topdelete = { text = '▍' },
+    changedelete = { text = '▍' },
   },
-}
+  on_attach = function(bufnr)
+    local gs = package.loaded.gitsigns
 
+    local function map(mode, l, r, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, l, r, opts)
+    end
+
+    -- Navigation
+    map('n', ']c', function()
+      if vim.wo.diff then return ']c' end
+      vim.schedule(function() gs.next_hunk() end)
+      return '<Ignore>'
+    end, { expr = true })
+
+    map('n', '[c', function()
+      if vim.wo.diff then return '[c' end
+      vim.schedule(function() gs.prev_hunk() end)
+      return '<Ignore>'
+    end, { expr = true })
+  end
+}
+vim.cmd([[:highlight CustomSignsAdd guifg=#a4cf69]])
+vim.cmd([[:highlight CustomSignsChange guifg=#63c1e6]])
+vim.cmd([[:highlight CustomSignsDelete guifg=#d74f56]])
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
@@ -209,7 +233,9 @@ pcall(require('telescope').load_extension, 'fzf')
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+vim.keymap.set('n', '<leader><space>',
+  "<Cmd>lua require('telescope').extensions.frecency.frecency({ workspace = 'CWD' })<CR>",
+  { noremap = true, silent = true, desc = '[ ] Find frecuently used files' })
 vim.keymap.set('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
@@ -238,7 +264,7 @@ require('nvim-treesitter.configs').setup {
       init_selection = '<c-space>',
       node_incremental = '<c-space>',
       scope_incremental = '<c-s>',
-      node_decremental = '<c-backspace>',
+      node_decremental = '<C-<BS>>',
     },
   },
   textobjects = {
@@ -322,7 +348,7 @@ local on_attach = function(_, bufnr)
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  -- nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -338,6 +364,16 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
+
+local format_on_save = vim.api.nvim_create_augroup('FormatOnSave', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePre', {
+  callback = function()
+    vim.cmd [[Format]]
+  end,
+  group = format_on_save,
+  pattern = '*',
+})
+
 -- Setup mason so it can manage external tooling
 require('mason').setup()
 
@@ -349,7 +385,7 @@ require('mason').setup()
 
 local servers = {
   -- clangd = {},
-  gopls = {},
+  -- gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
   tsserver = {},
@@ -365,7 +401,7 @@ local servers = {
 
 -- Setup neovim lua configuration
 require('neodev').setup()
---
+
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
