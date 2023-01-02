@@ -31,7 +31,7 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 local harpoon_mark = require("harpoon.mark")
 local harpoon_ui = require("harpoon.ui")
 --harpoon
-vim.keymap.set('n', '<leader>a', harpoon_mark.add_file, { silent = true })
+vim.keymap.set('n', '<C-a>', harpoon_mark.add_file, { silent = true })
 vim.keymap.set('n', '<C-e>', harpoon_ui.toggle_quick_menu, { silent = true })
 vim.keymap.set('n', '-', harpoon_ui.nav_next, { silent = true })
 vim.keymap.set('n', '=', harpoon_ui.nav_prev, { silent = true })
