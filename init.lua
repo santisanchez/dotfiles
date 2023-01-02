@@ -89,7 +89,6 @@ if is_bootstrap then
   print '=================================='
   return
 end
-
 -- Automatically source and re-compile packer whenever you save this init.lua
 local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePost', {
@@ -126,7 +125,7 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme onedark]]
+-- vim.cmd [[colorscheme tokyonight-storm]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -362,17 +361,18 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
+
+  local format_on_save = vim.api.nvim_create_augroup('FormatOnSave', { clear = true })
+  vim.api.nvim_create_autocmd('BufWritePre', {
+    callback = function()
+      vim.cmd [[Format]]
+    end,
+    group = format_on_save,
+    pattern = '*',
+  })
 end
 
 
-local format_on_save = vim.api.nvim_create_augroup('FormatOnSave', { clear = true })
-vim.api.nvim_create_autocmd('BufWritePre', {
-  callback = function()
-    vim.cmd [[Format]]
-  end,
-  group = format_on_save,
-  pattern = '*',
-})
 
 -- Setup mason so it can manage external tooling
 require('mason').setup()
@@ -431,8 +431,10 @@ require('fidget').setup()
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
-local luasnip = require 'luasnip'
 
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+local luasnip = require 'luasnip'
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
 cmp.setup {
   snippet = {
     expand = function(args)
