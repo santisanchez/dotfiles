@@ -362,14 +362,14 @@ local on_attach = function(_, bufnr)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
 
-  local format_on_save = vim.api.nvim_create_augroup('FormatOnSave', { clear = true })
-  vim.api.nvim_create_autocmd('BufWritePre', {
-    callback = function()
-      vim.cmd [[Format]]
-    end,
-    group = format_on_save,
-    pattern = '*',
-  })
+  -- local format_on_save = vim.api.nvim_create_augroup('FormatOnSave', { clear = true })
+  -- vim.api.nvim_create_autocmd('BufWritePre', {
+  --   callback = function()
+  --     vim.cmd [[Format]]
+  --   end,
+  --   group = format_on_save,
+  --   pattern = '*',
+  -- })
 end
 
 

@@ -105,7 +105,7 @@ local null_ls = require("null-ls")
 local laravel_actions = require("laravel.code-actions")
 require('null-ls').setup({
   sources = {
-    null_ls.builtins.formatting.prettier,
+    -- null_ls.builtins.formatting.prettier,
     null_ls.builtins.code_actions.refactoring,
     null_ls.builtins.code_actions.gitsigns,
     laravel_actions.relationships
