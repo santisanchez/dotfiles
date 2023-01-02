@@ -12,9 +12,6 @@ vim.keymap.set(
     { noremap = true, silent = true }
 )
 
--- some gitsigns mappings
-vim.keymap.set("n", "<leader>nc", "", { silent = true })
-
 -- move lines around
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")

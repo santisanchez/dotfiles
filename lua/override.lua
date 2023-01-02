@@ -3,6 +3,7 @@
 vim.cmd [[colorscheme tokyonight-storm]]
 vim.opt.showtabline = 2
 
+vim.opt.guifont = "FiraCode NF:h15"
 -- Offset on scroll
 vim.opt.scrolloff = 5
 vim.opt.smartindent = true
@@ -88,6 +89,9 @@ require('nvim-treesitter.configs').setup {
     use_virtual_text = true,
     lint_events = { "BufWrite", "CursorHold" },
   },
+  autotag = {
+    enable = true,
+  }
 }
 
 
