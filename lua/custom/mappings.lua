@@ -27,11 +27,10 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- Replace this shitty word
 -- vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-
 local harpoon_mark = require("harpoon.mark")
 local harpoon_ui = require("harpoon.ui")
 --harpoon
-vim.keymap.set('n', '<C-a>', harpoon_mark.add_file, { silent = true })
+vim.keymap.set('n', '<leader>a', harpoon_mark.add_file, { silent = true })
 vim.keymap.set('n', '<C-e>', harpoon_ui.toggle_quick_menu, { silent = true })
 vim.keymap.set('n', '-', harpoon_ui.nav_next, { silent = true })
 vim.keymap.set('n', '=', harpoon_ui.nav_prev, { silent = true })
@@ -41,8 +40,8 @@ vim.keymap.set('n', '<F3>', ":lua require('harpoon.ui').nav_file(3)<CR>", { sile
 vim.keymap.set('n', '<F4>', ":lua require('harpoon.ui').nav_file(4)<CR>", { silent = true })
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { silent = true })
 
-vim.keymap.set('n', '<C-j>', ':cprevious<CR>', { silent = true })
-vim.keymap.set('n', '<C-k>', ':cnext<CR>', { silent = true })
+vim.keymap.set('n', '<C-j>', ':cnext<CR>', { silent = true })
+vim.keymap.set('n', '<C-k>', ':cprevious<CR>', { silent = true })
 
 -- Center to the cursor on screen movement
 vim.keymap.set('n', '<C-f>', '<C-f>zz', { silent = true })
