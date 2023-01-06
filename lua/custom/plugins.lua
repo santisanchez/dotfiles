@@ -31,21 +31,21 @@ local plugins = function(use)
         end
     }
 
-    use { "adalessa/laravel.nvim",
-        requires = {
-            { "nvim-lua/plenary.nvim" },
-            { "rcarriga/nvim-notify" },
-            { "nvim-telescope/telescope.nvim" },
-        },
-        config = function()
-            require("laravel").setup({
-                split_cmd = "horizontal",
-                split_height = 10,
-                bind_telescope = true,
-                ask_for_args = true,
-            })
-        end
-    }
+    -- use { "adalessa/laravel.nvim",
+    --     requires = {
+    --         { "nvim-lua/plenary.nvim" },
+    --         { "rcarriga/nvim-notify" },
+    --         { "nvim-telescope/telescope.nvim" },
+    --     },
+    --     config = function()
+    --         require("laravel").setup({
+    --             split_cmd = "vertical",
+    --             split_width = 10,
+    --             bind_telescope = true,
+    --             ask_for_args = true,
+    --         })
+    --     end
+    -- }
 
     use { "napmn/react-extract.nvim", config = function()
         require("react-extract").setup()

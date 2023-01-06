@@ -1,6 +1,6 @@
 -- System Clipboard
 -- vim.opt.clipboard = 'unnamedplus'
-vim.cmd [[colorscheme tokyonight-storm]]
+vim.cmd [[colorscheme onedark]]
 vim.opt.showtabline = 2
 
 vim.opt.guifont = "FiraCode NF:h15"
@@ -34,7 +34,6 @@ require('telescope').setup {
           ["<C-r>"] = fb_actions.rename,
           ["<C-h>"] = fb_actions.goto_cwd,
           ["<C-p>"] = fb_actions.goto_parent_dir,
-
         },
         ["n"] = {
           -- your custom normal mode mappings
@@ -48,8 +47,10 @@ require('telescope').setup {
     }
   },
   defaults = {
+    file_ignore_patterns = { "public" },
     mappings = {
       i = {
+        ["<Esc>"] = actions.close,
         ['<C-u>'] = false,
         ['<C-d>'] = false,
         ["<C-j>"] = actions.move_selection_next,
@@ -60,7 +61,7 @@ require('telescope').setup {
 }
 
 pcall(require("telescope").load_extension, 'refactoring')
-pcall(require('telescope').load_extension, 'laravel')
+-- pcall(require('telescope').load_extension, 'laravel')
 pcall(require("telescope").load_extension, "file_browser")
 pcall(require("telescope").load_extension, 'harpoon')
 
@@ -102,13 +103,13 @@ require("luasnip.loaders.from_vscode").lazy_load({ paths = {
 } })
 
 local null_ls = require("null-ls")
-local laravel_actions = require("laravel.code-actions")
+-- local laravel_actions = require("laravel.code-actions")
 require('null-ls').setup({
   sources = {
     -- null_ls.builtins.formatting.prettier,
     null_ls.builtins.code_actions.refactoring,
     null_ls.builtins.code_actions.gitsigns,
-    laravel_actions.relationships
+    -- laravel_actions.relationships
   },
 })
 pcall(require, 'custom.mappings')
