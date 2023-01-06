@@ -1,4 +1,6 @@
 -- My Mappings
+vim.g.neovide_input_macos_alt_is_meta = true
+
 vim.keymap.set('n', '<C-s>', ':wa<CR>', { silent = true })
 
 -- vim.keymap.set('n', '<C-h>', '<C-w>h', { silent = true })
@@ -11,10 +13,14 @@ vim.keymap.set(
     ":Telescope file_browser path=%:p:h<CR>",
     { noremap = true, silent = true }
 )
-
+--cycle through windows
+vim.keymap.set("n","<Tab>","<C-w>w",{silent=true,noremap=true})
 -- move lines around
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+-- manual indent
+vim.keymap.set('v', '<', '<gv', {silent=true,noremap=true})
+vim.keymap.set('v', '>', '>gv', {silent=true,noremap=true})
 
 -- Join the next line and keep the cursor position
 vim.keymap.set("n", "J", "mzJ`z")
@@ -39,6 +45,7 @@ vim.keymap.set('n', '<F2>', ":lua require('harpoon.ui').nav_file(2)<CR>", { sile
 vim.keymap.set('n', '<F3>', ":lua require('harpoon.ui').nav_file(3)<CR>", { silent = true })
 vim.keymap.set('n', '<F4>', ":lua require('harpoon.ui').nav_file(4)<CR>", { silent = true })
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { silent = true })
+vim.keymap.set('t', '<leader>c', ':bd!<CR>', {silent=true, noremap=true})
 
 vim.keymap.set('n', '<C-j>', ':cnext<CR>', { silent = true })
 vim.keymap.set('n', '<C-k>', ':cprevious<CR>', { silent = true })
@@ -70,20 +77,20 @@ vim.keymap.set("v",
 )
 
 vim.keymap.set("v",
-    "<leader>yc",
+    "<leader>bs",
     "<cmd>'<,'>YodeCreateSeditorFloating<CR>",
     { noremap = true }
 )
 
 
 vim.keymap.set("v",
-    "<leader>yr",
+    "<leader>br",
     "<cmd>'<,'>YodeCreateSeditorReplace<CR>",
     { noremap = true }
 )
 
 vim.keymap.set("n",
-    "<leader>yd",
+    "<leader>bd",
     "<cmd>YodeBufferDelete<CR>",
     { noremap = true }
 )
