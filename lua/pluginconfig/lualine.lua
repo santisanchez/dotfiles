@@ -79,28 +79,28 @@ end, { noremap = true, expr = true })
 
 local colors = {
 	-- onedark
-	-- blue = '#61afef',
-	-- green = '#98c379',
-	-- purple = '#c678dd',
-	-- red1 = '#e06c75',
-	-- red2 = '#be5046',
-	-- yellow = '#e5c07b',
-	-- fg = '#abb2bf',
-	-- bg = '#282c34',
-	-- gray1 = '#5c6370',
-	-- gray2 = '#2c323d',
-	-- gray3 = '#3e4452'
+	blue = '#61afef',
+	green = '#98c379',
+	purple = '#c678dd',
+	red1 = '#e06c75',
+	red2 = '#be5046',
+	yellow = '#e5c07b',
+	fg = '#abb2bf',
+	bg = '#282c34',
+	gray1 = '#5c6370',
+	gray2 = '#2c323d',
+	gray3 = '#3e4452'
 	-- nordfox
-	black = "#3b4252",
-	red = "#bf616a",
-	green = "#a3be8c",
-	yellow = "#ebcb8b",
-	blue = "#81a1c1",
-	magenta = "#b48ead",
-	cyan = "#88c0d0",
-	white = "#e5e9f0",
-	foreground = "#b9bfca",
-	background = "#2e3440",
+	-- black = "#3b4252",
+	-- red = "#bf616a",
+	-- green = "#a3be8c",
+	-- yellow = "#ebcb8b",
+	-- blue = "#81a1c1",
+	-- magenta = "#b48ead",
+	-- cyan = "#88c0d0",
+	-- white = "#e5e9f0",
+	-- foreground = "#b9bfca",
+	-- background = "#2e3440",
 }
 
 local terminal_status_color = function(status)
@@ -186,7 +186,7 @@ local my_extension = {
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
-		theme = "nightfox",
+		theme = "onedark",
 		component_separators = { left = "", right = "" },
 		section_separators = { left = "", right = "" },
 		disabled_filetypes = {},

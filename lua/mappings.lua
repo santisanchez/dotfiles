@@ -1,26 +1,25 @@
 -- My Mappings
 vim.g.neovide_input_macos_alt_is_meta = true
 
+-- [_Lsp]
+vim.keymap.set("n", ";", "<Nop>", { noremap = true, silent = true })
+vim.keymap.set("n", "[_Lsp]", "<Nop>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", ";", "[_Lsp]", {})
+
 vim.keymap.set('n', '<C-s>', ':wa<CR>', { silent = true })
 
 -- vim.keymap.set('n', '<C-h>', '<C-w>h', { silent = true })
 -- vim.keymap.set('n', '<C-j>', '<C-w>j', { silent = true })
 -- vim.keymap.set('n', '<C-k>', '<C-w>k', { silent = true })
 -- vim.keymap.set('n', '<C-l>', '<C-w>l', { silent = true })
-vim.keymap.set(
-    "n",
-    "<leader>t",
-    ":Telescope file_browser path=%:p:h<CR>",
-    { noremap = true, silent = true }
-)
 --cycle through windows
 vim.keymap.set("n","<Tab>","<C-w>w",{silent=true,noremap=true})
 -- move lines around
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- manual indent
-vim.keymap.set('v', '<', '<gv', {silent=true,noremap=true})
-vim.keymap.set('v', '>', '>gv', {silent=true,noremap=true})
+vim.keymap.set('x', '<', '<gv', {silent=true,noremap=true})
+vim.keymap.set('x', '>', '>gv', {silent=true,noremap=true})
 
 -- Join the next line and keep the cursor position
 vim.keymap.set("n", "J", "mzJ`z")
@@ -47,8 +46,10 @@ vim.keymap.set('n', '<F4>', ":lua require('harpoon.ui').nav_file(4)<CR>", { sile
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { silent = true })
 vim.keymap.set('t', '<leader>c', ':bd!<CR>', {silent=true, noremap=true})
 
-vim.keymap.set('n', '<C-j>', ':cnext<CR>', { silent = true })
-vim.keymap.set('n', '<C-k>', ':cprevious<CR>', { silent = true })
+vim.keymap.set('n', ']q', ':cnext<CR>', { silent = true })
+vim.keymap.set('n', '[q', ':cprevious<CR>', { silent = true })
+vim.keymap.set('n', ']b', ':bnext<CR>', { silent = true })
+vim.keymap.set('n', '[b', ':bprevious<CR>', { silent = true })
 
 -- Center to the cursor on screen movement
 vim.keymap.set('n', '<C-f>', '<C-f>zz', { silent = true })
@@ -59,9 +60,6 @@ vim.keymap.set('n', 'n', 'nzzzv', { silent = true })
 vim.keymap.set('n', 'N', 'Nzzzv', { silent = true })
 -- vim.keymap.set('n', '<C-o>', '<C-o>zz', { silent = true })
 -- vim.keymap.set('n', '<C-i>', '<C-i>zz', { silent = true })
-
-vim.keymap.set('n', 'L', ':bnext<CR>', { silent = true })
-vim.keymap.set('n', 'H', ':bprevious<CR>', { silent = true })
 vim.keymap.set('n', '<leader>c', ':bdelete<CR>', { silent = true })
 
 --remaps for react extract
@@ -94,3 +92,16 @@ vim.keymap.set("n",
     "<cmd>YodeBufferDelete<CR>",
     { noremap = true }
 )
+
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
+-- Remap for dealing with word wrap
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+
+-- Diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)

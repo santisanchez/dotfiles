@@ -136,11 +136,11 @@ require("telescope").setup({
                 mirror = false,
                 prompt_position = "top",
                 preview_cutoff = 120,
-                preview_width = 0.5,
+                -- preview_width = 0.5,
             },
         },
         file_sorter = require("telescope.sorters").get_fuzzy_file,
-        file_ignore_patterns = { "node_modules/*" },
+        file_ignore_patterns = { "node_modules/*", "public/*" },
         generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
         path_display = { "truncate" },
         dynamic_preview_title = true,
@@ -174,6 +174,12 @@ require("telescope").setup({
                 ["<CR>"] = use_normal_mapping("<CR>"),
             },
             i = {
+                ["<Esc>"] = actions.close,
+                ['<C-u>'] = false,
+                ['<C-d>'] = false,
+                ["<C-j>"] = actions.move_selection_next,
+                ["<C-k>"] = actions.move_selection_previous,
+
                 ["<C-t>"] = action_layout.toggle_preview,
                 ["<C-x>"] = false,
                 -- ["<C-s>"] = actions.select_horizontal,
@@ -226,12 +232,12 @@ require("telescope").setup({
                 return dirs
             end)(),
         },
-        fzf = {
-            fuzzy = true, -- false will only do exact matching
-            override_generic_sorter = true, -- override the generic sorter
-            override_file_sorter = true, -- override the file sorter
-            case_mode = "smart_case",
-        },
+        -- fzf = {
+        --     fuzzy = true, -- false will only do exact matching
+        --     override_generic_sorter = true, -- override the generic sorter
+        --     override_file_sorter = true, -- override the file sorter
+        --     case_mode = "smart_case",
+        -- },
     },
 })
 
@@ -385,97 +391,113 @@ telescope_builtin.memo = function(opts)
     require("telescope.builtin").find_files({
         opts = opts,
         prompt_title = "MemoList",
-        find_command = { "find", vim.g.memolist_path, "-type", "f", "-exec", "ls", "-1ta", "{}", "+" },
+        find_command = { "fd", vim.g.memolist_path, "-type", "f", "-exec", "ls", "-1ta", "{}", "+" },
     })
 end
 
-vim.api.nvim_set_keymap("n", "<Leader><Leader>", "<Cmd>Telescope my_mru<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap(
-    "n",
-    "[_FuzzyFinder]<Leader>",
-    "<Cmd>Telescope find_files<CR>",
-    { noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap("n", "<Leader>;", "<Cmd>Telescope git_files<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "[_FuzzyFinder];", "<Cmd>Telescope git_files<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap(
-    "n",
-    "<Leader>.",
-    "<Cmd>Telecwoc diagnosticsscope find_files<CR>",
-    { noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap("n", "[_FuzzyFinder].", "<Cmd>Telescope my_mru<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>,", "<Cmd>Telescope grep_prompt<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "[_FuzzyFinder],", "<Cmd>Telescope grep_prompt<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "[_FuzzyFinder]>", "<Cmd>Telescope my_grep_in_dir<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap(
-    "v",
-    "[_FuzzyFinder],",
-    "y:Telescope my_grep search=<C-r>=escape(@\", '\\.*$^[] ')<CR>",
-    { noremap = true }
-)
-vim.api.nvim_set_keymap(
-    "n",
-    "<Leader>/",
-    ":<C-u>Telescope my_grep search=<C-r>=expand('<cword>')<CR>",
-    { noremap = true }
-)
-vim.api.nvim_set_keymap(
-    "n",
-    "[_FuzzyFinder]/",
-    ":<C-u>Telescope my_grep search=<C-r>=expand('<cword>')<CR>",
-    { noremap = true }
-)
-vim.api.nvim_set_keymap("n", "[_FuzzyFinder]s", "<Cmd>Telescope live_grep<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "[_FuzzyFinder]b", "<Cmd>Telescope buffers<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "[_FuzzyFinder]h", "<Cmd>Telescope help_tags<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "[_FuzzyFinder]c", "<Cmd>Telescope commands<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "[_FuzzyFinder]t", "<Cmd>Telescope treesitter<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "[_FuzzyFinder]q", "<Cmd>Telescope quickfix<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "[_FuzzyFinder]l", "<Cmd>Telescope loclist<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "[_FuzzyFinder]m", "<Cmd>Telescope marks<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "[_FuzzyFinder]r", "<Cmd>Telescope registers<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "[_FuzzyFinder]*", "<Cmd>Telescope grep_string<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap(
-    "n",
-    "[_FuzzyFinder]f",
-    "<Cmd>Telescope file_browser file_browser<CR>",
-    { noremap = true, silent = true }
-)
--- git
-vim.api.nvim_set_keymap(
-    "n",
-    "[_FuzzyFinder]gs",
-    "<Cmd>lua require('telescope.builtin').git_status()<CR>",
-    { noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-    "n",
-    "[_FuzzyFinder]gc",
-    "<Cmd>lua require('telescope.builtin').git_commits()<CR>",
-    { noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-    "n",
-    "[_FuzzyFinder]gC",
-    "<Cmd>lua require('telescope.builtin').git_bcommits()<CR>",
-    { noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-    "n",
-    "[_FuzzyFinder]gb",
-    "<Cmd>lua require('telescope.builtin').git_branches()<CR>",
-    { noremap = true, silent = true }
-)
--- extension
-vim.api.nvim_set_keymap(
-    "n",
-    "[_FuzzyFinder]S",
-    "<Cmd>lua require('telescope').extensions.arecibo.websearch()<CR>",
-    { noremap = true, silent = true }
-)
--- coc
-vim.api.nvim_set_keymap("n", "[_FuzzyFinder]cd", "<Cmd>Telescope coc diagnostics<CR>", { noremap = true, silent = true })
+-- See `:help telescope.builtin`
+vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+vim.keymap.set('n', '<leader>/', function()
+  -- You can pass additional configuration to telescope to change theme, layout, etc.
+  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+    winblend = 10,
+    previewer = false,
+  })
+end, { desc = '[/] Fuzzily search in current buffer]' })
 
-vim.api.nvim_set_keymap("n", "[_FuzzyFinder]:", "<Cmd>Telescope command_history<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("c", "<C-t>", "<BS><Cmd>Telescope command_history<CR>", { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
+vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
+vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
+vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+
+vim.api.nvim_set_keymap("n", "<Leader><Leader>", "<Cmd>Telescope my_mru<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap(
+--     "n",
+--     "[_FuzzyFinder]<Leader>",
+--     "<Cmd>Telescope find_files<CR>",
+--     { noremap = true, silent = true }
+-- )
+-- vim.api.nvim_set_keymap("n", "<Leader>;", "<Cmd>Telescope git_files<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "[_FuzzyFinder];", "<Cmd>Telescope git_files<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap(
+--     "n",
+--     "<Leader>.",
+--     "<Cmd>Telecwoc diagnosticsscope find_files<CR>",
+--     { noremap = true, silent = true }
+-- )
+-- vim.api.nvim_set_keymap("n", "[_FuzzyFinder].", "<Cmd>Telescope my_mru<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<Leader>,", "<Cmd>Telescope grep_prompt<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "[_FuzzyFinder],", "<Cmd>Telescope grep_prompt<CR>", { noremap = true })
+-- vim.api.nvim_set_keymap("n", "[_FuzzyFinder]>", "<Cmd>Telescope my_grep_in_dir<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap(
+--     "v",
+--     "[_FuzzyFinder],",
+--     "y:Telescope my_grep search=<C-r>=escape(@\", '\\.*$^[] ')<CR>",
+--     { noremap = true }
+-- )
+-- vim.api.nvim_set_keymap(
+--     "n",
+--     "<Leader>/",
+--     ":<C-u>Telescope my_grep search=<C-r>=expand('<cword>')<CR>",
+--     { noremap = true }
+-- )
+-- vim.api.nvim_set_keymap(
+--     "n",
+--     "[_FuzzyFinder]/",
+--     ":<C-u>Telescope my_grep search=<C-r>=expand('<cword>')<CR>",
+--     { noremap = true }
+-- )
+-- vim.api.nvim_set_keymap("n", "[_FuzzyFinder]s", "<Cmd>Telescope live_grep<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "[_FuzzyFinder]b", "<Cmd>Telescope buffers<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "[_FuzzyFinder]h", "<Cmd>Telescope help_tags<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "[_FuzzyFinder]c", "<Cmd>Telescope commands<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "[_FuzzyFinder]t", "<Cmd>Telescope treesitter<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "[_FuzzyFinder]q", "<Cmd>Telescope quickfix<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "[_FuzzyFinder]l", "<Cmd>Telescope loclist<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "[_FuzzyFinder]m", "<Cmd>Telescope marks<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "[_FuzzyFinder]r", "<Cmd>Telescope registers<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "[_FuzzyFinder]*", "<Cmd>Telescope grep_string<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap(
+--     "n",
+--     "[_FuzzyFinder]f",
+--     "<Cmd>Telescope file_browser file_browser<CR>",
+--     { noremap = true, silent = true }
+-- )
+-- -- git
+-- vim.api.nvim_set_keymap(
+--     "n",
+--     "[_FuzzyFinder]gs",
+--     "<Cmd>lua require('telescope.builtin').git_status()<CR>",
+--     { noremap = true, silent = true }
+-- )
+-- vim.api.nvim_set_keymap(
+--     "n",
+--     "[_FuzzyFinder]gc",
+--     "<Cmd>lua require('telescope.builtin').git_commits()<CR>",
+--     { noremap = true, silent = true }
+-- )
+-- vim.api.nvim_set_keymap(
+--     "n",
+--     "[_FuzzyFinder]gC",
+--     "<Cmd>lua require('telescope.builtin').git_bcommits()<CR>",
+--     { noremap = true, silent = true }
+-- )
+-- vim.api.nvim_set_keymap(
+--     "n",
+--     "[_FuzzyFinder]gb",
+--     "<Cmd>lua require('telescope.builtin').git_branches()<CR>",
+--     { noremap = true, silent = true }
+-- )
+-- -- extension
+-- vim.api.nvim_set_keymap(
+--     "n",
+--     "[_FuzzyFinder]S",
+--     "<Cmd>lua require('telescope').extensions.arecibo.websearch()<CR>",
+--     { noremap = true, silent = true }
+-- )
+-- -- coc
+-- vim.api.nvim_set_keymap("n", "[_FuzzyFinder]cd", "<Cmd>Telescope coc diagnostics<CR>", { noremap = true, silent = true })
+--
+-- vim.api.nvim_set_keymap("n", "[_FuzzyFinder]:", "<Cmd>Telescope command_history<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("c", "<C-t>", "<BS><Cmd>Telescope command_history<CR>", { noremap = true, silent = true })
