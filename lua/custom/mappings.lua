@@ -57,8 +57,8 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz', { silent = true })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { silent = true })
 vim.keymap.set('n', 'n', 'nzzzv', { silent = true })
 vim.keymap.set('n', 'N', 'Nzzzv', { silent = true })
-vim.keymap.set('n', '<C-o>', '<C-o>zz', { silent = true })
-vim.keymap.set('n', '<C-i>', '<C-i>zz', { silent = true })
+-- vim.keymap.set('n', '<C-o>', '<C-o>zz', { silent = true })
+-- vim.keymap.set('n', '<C-i>', '<C-i>zz', { silent = true })
 
 vim.keymap.set('n', 'L', ':bnext<CR>', { silent = true })
 vim.keymap.set('n', 'H', ':bprevious<CR>', { silent = true })
@@ -78,7 +78,7 @@ vim.keymap.set("v",
 
 vim.keymap.set("v",
     "<leader>bs",
-    "<cmd>'<,'>YodeCreateSeditorFloating<CR>",
+    "<cmd>YodeCreateSeditorFloating<CR>",
     { noremap = true }
 )
 
