@@ -1,4 +1,3 @@
-
 -- Disable some builtin vim plugins
 local disabled_built_ins = {
     "2html_plugin",
@@ -6,10 +5,10 @@ local disabled_built_ins = {
     "getscriptPlugin",
     "gzip",
     "logipat",
-    -- "netrw",
-    -- "netrwPlugin",
-    -- "netrwSettings",
-    -- "netrwFileHandlers",
+    "netrw",
+    "netrwPlugin",
+    "netrwSettings",
+    "netrwFileHandlers",
     -- "matchit",
     "matchparen",
     "tar",
@@ -60,7 +59,7 @@ local base_plugins = {
   {
     "SmiteshP/nvim-navic",
     init = function()
-      require("pluginconfig/nvim-navic")
+      require("config/nvim-navic")
     end,
   },
 
@@ -68,7 +67,7 @@ local base_plugins = {
     "hrsh7th/nvim-cmp",
     event = "VimEnter",
     config = function()
-      require("pluginconfig/nvim-cmp")
+      require("config/nvim-cmp")
     end,
     dependencies = {
       { "L3MON4D3/LuaSnip" },
@@ -89,7 +88,7 @@ local base_plugins = {
       {
         "uga-rosa/cmp-dictionary",
         config = function()
-          require("pluginconfig/cmp-dictionary")
+          require("config/cmp-dictionary")
         end,
       },
       { "saadparwaiz1/cmp_luasnip" },
@@ -99,7 +98,7 @@ local base_plugins = {
       {
         "onsails/lspkind-nvim",
         config = function()
-          require("pluginconfig/lspkind-nvim")
+          require("config/lspkind-nvim")
         end,
       },
     },
@@ -110,19 +109,19 @@ local base_plugins = {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre" },
     config = function()
-      require("pluginconfig/nvim-lspconfig")
+      require("config/nvim-lspconfig")
     end,
     dependencies = {
       -- {
       --   "folke/neoconf.nvim",
       --   config = function()
-      --     require("pluginconfig/neoconf")
+      --     require("config/neoconf")
       --   end,
       -- },
       {
         "williamboman/mason-lspconfig.nvim",
         config = function()
-          require("pluginconfig/mason-lspconfig")
+          require("config/mason-lspconfig")
         end,
       },
       { "weilbith/nvim-lsp-smag" },
@@ -135,7 +134,7 @@ local base_plugins = {
     event = { "VimEnter" },
     build = ":TSUpdate",
     config = function()
-      require("pluginconfig/nvim-treesitter")
+      require("config/nvim-treesitter")
     end,
     dependencies = {
       { "JoosepAlviste/nvim-ts-context-commentstring" },
@@ -161,7 +160,7 @@ local base_plugins = {
     "lewis6991/gitsigns.nvim",
     event = "VimEnter",
     config = function()
-      require("pluginconfig/gitsigns")
+      require("config/gitsigns")
     end,
   },
 
@@ -170,14 +169,14 @@ local base_plugins = {
     "nvim-lualine/lualine.nvim",
     event = "VimEnter",
     config = function()
-      require("pluginconfig/lualine")
+      require("config/lualine")
     end,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
     event = "VimEnter",
     config = function()
-      require("pluginconfig/indent-blankline")
+      require("config/indent-blankline")
     end,
   },
   -- "gc" to comment visual regions/lines
@@ -185,7 +184,7 @@ local base_plugins = {
     "numToStr/Comment.nvim",
     event = "VimEnter",
     config = function()
-      require("pluginconfig/Comment")
+      require("config/Comment")
     end,
   },
   -- 'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
@@ -198,7 +197,7 @@ local base_plugins = {
     "nvim-telescope/telescope.nvim",
     event = { "VimEnter" },
     config = function()
-      require("pluginconfig/telescope")
+      require("config/telescope")
     end,
     dependencies = {
       {
@@ -210,14 +209,14 @@ local base_plugins = {
       {
         "ThePrimeagen/refactoring.nvim",
         config = function()
-          require("pluginconfig/refactoring")
+          require("config/refactoring")
           require("telescope").load_extension("refactoring")
         end,
       },
       {
         "ThePrimeagen/harpoon",
         config = function()
-          require("pluginconfig/harpoon")
+          require("config/harpoon")
           require("telescope").load_extension("harpoon")
         end
       },
@@ -307,7 +306,7 @@ local base_plugins = {
     "windwp/nvim-ts-autotag",
     event = "VimEnter",
     config = function()
-      require("pluginconfig/nvim-ts-autotag")
+      require("config/nvim-ts-autotag")
     end,
     dependencies = { { "nvim-treesitter/nvim-treesitter" } },
   },
@@ -333,7 +332,7 @@ local base_plugins = {
       return not vim.g.vscode
     end,
     config = function()
-      require("pluginconfig/bufferline")
+      require("config/bufferline")
     end,
   },
 
@@ -347,7 +346,7 @@ local base_plugins = {
     event = "VimEnter",
     branch = "main",
     config = function()
-      require("pluginconfig/neo-tree")
+      require("config/neo-tree")
     end,
   },
 }
