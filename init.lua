@@ -197,7 +197,7 @@ local base_plugins = {
     "nvim-telescope/telescope.nvim",
     event = { "VimEnter" },
     config = function()
-      require("config/telescope")
+      require("config/telescope_config")
     end,
     dependencies = {
       {
@@ -232,12 +232,6 @@ local base_plugins = {
           require("telescope").load_extension("ui-select")
         end,
       },
-      -- {
-      -- 	"nvim-telescope/telescope-packer.nvim",
-      -- 	config = function()
-      -- 		require("telescope").load_extension("packer")
-      -- 	end,
-      -- },
       {
         "crispgm/telescope-heading.nvim",
         config = function()
@@ -275,13 +269,14 @@ local base_plugins = {
           require("telescope").load_extension("media_files")
         end,
       },
-      -- { 'nvim-telescope/telescope-fzf-native.nvim',
-      --   build = 'make',
-      --   cond = vim.fn.executable 'make' == 1,
-      --   config = function()
-      --     require('telescope').load_extension('fzf')
-      --   end
-      -- },
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'make',
+        cond = vim.fn.executable 'make' == 1,
+        config = function()
+          require('telescope').load_extension('fzf')
+        end
+      },
     },
   },
   -- Fuzzy Finder Algorithm which dependencies local dependencies to be built. Only load if `make` is available,
@@ -340,9 +335,9 @@ local base_plugins = {
 
   {
     "nvim-neo-tree/neo-tree.nvim",
-    -- dependencies = {
-    --   "nvim-tree/nvim-web-devicons"
-    -- },
+    dependencies = {
+      "nvim-tree/nvim-web-devicons"
+    },
     event = "VimEnter",
     branch = "main",
     config = function()
@@ -360,5 +355,6 @@ require("lazy").setup(base_plugins)
 require('options')
 require('autocmds')
 require('mappings')
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

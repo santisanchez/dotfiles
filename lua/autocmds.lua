@@ -7,3 +7,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+local remove_spaces = vim.api.nvim_create_augroup("RemoveSpaces",{clear=true})
+vim.api.nvim_create_autocmd("BufWritePre", {
+    group = remove_spaces,
+    pattern = "*",
+    command = [[%s/\s\+$//e]],
+})

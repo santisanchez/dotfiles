@@ -74,16 +74,15 @@ vim.keymap.set("v",
     { noremap = true }
 )
 
-vim.keymap.set("v",
+vim.keymap.set("x",
     "<leader>bs",
-    "<cmd>YodeCreateSeditorFloating<CR>",
+    ":'<,'>YodeCreateSeditorFloating<CR>",
     { noremap = true }
 )
 
-
-vim.keymap.set("v",
+vim.keymap.set("x",
     "<leader>br",
-    "<cmd>'<,'>YodeCreateSeditorReplace<CR>",
+    ":'<,'>YodeCreateSeditorReplace<CR>",
     { noremap = true }
 )
 
