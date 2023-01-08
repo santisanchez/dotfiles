@@ -3,7 +3,7 @@ local function ts_disable(_, bufnr)
 end
 
 require("nvim-treesitter.configs").setup({
-	ensure_installed = { 'php','javascript','tsx','go', 'lua', 'python', 'typescript', 'help', 'vim' }, 	
+    ensure_installed = { 'php', 'javascript', 'tsx', 'go', 'lua', 'python', 'typescript', 'help', 'vim' },
 	highlight = {
 		enable = true, -- false will disable the whole extension
 		disable = {}, -- list of language that will be disabled

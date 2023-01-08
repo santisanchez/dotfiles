@@ -2,10 +2,6 @@
 vim.g.neovide_input_macos_alt_is_meta = true
 
 -- [_Lsp]
-vim.keymap.set("n", ";", "<Nop>", { noremap = true, silent = true })
-vim.keymap.set("n", "[_Lsp]", "<Nop>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", ";", "[_Lsp]", {})
-
 vim.keymap.set('n', '<C-s>', ':wa<CR>', { silent = true })
 
 -- vim.keymap.set('n', '<C-h>', '<C-w>h', { silent = true })
@@ -25,10 +21,10 @@ vim.keymap.set('x', '>', '>gv', {silent=true,noremap=true})
 vim.keymap.set("n", "J", "mzJ`z")
 
 --better clipboard
-vim.keymap.set("x", "<leader>p", [["_dP]])
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+-- vim.keymap.set("x", "<leader>p", [["_dP]])
+-- vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+-- vim.keymap.set("n", "<leader>Y", [["+Y]])
+-- vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- Replace this shitty word
 -- vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
@@ -67,12 +63,6 @@ vim.keymap.set({ "n" }, "<leader>rp", ":lua require('custom').extract_to_new_fil
 vim.keymap.set({ "n" }, "<leader>rc", ":lua require('custom').extract_to_current_file()<CR>",
     { silent = true, expr = false })
 -- Remaps for the refactoring operations currently offered by the plugin
-
-vim.keymap.set("v",
-    "<leader>rr",
-    "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
-    { noremap = true }
-)
 
 vim.keymap.set("x",
     "<leader>bs",

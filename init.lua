@@ -59,7 +59,23 @@ local base_plugins = {
   {
     "SmiteshP/nvim-navic",
     init = function()
-      require("config/nvim-navic")
+      require("config/nvim-navic_config")
+    end,
+  },
+
+  { "MunifTanjim/nui.nvim" },
+
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons"
+    },
+    branch = "main",
+    keys = {
+      { "<leader>t", "<cmd>Neotree toggle<cr>", desc = "NeoTree" },
+    },
+    config = function()
+      require("config/neo-tree")
     end,
   },
 
@@ -125,9 +141,16 @@ local base_plugins = {
         end,
       },
       { "weilbith/nvim-lsp-smag" },
+      { 'joechrisellis/lsp-format-modifications.nvim' }
     },
   },
-
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    event = "BufReadPre",
+    config = function()
+      require("config/null-ls_config")
+    end
+  },
 
   {
     "nvim-treesitter/nvim-treesitter",
@@ -192,7 +215,6 @@ local base_plugins = {
 
   { "nvim-lua/plenary.nvim" },
   { "kkharji/sqlite.lua" },
-
   {
     "nvim-telescope/telescope.nvim",
     event = { "VimEnter" },
@@ -219,6 +241,18 @@ local base_plugins = {
           require("config/harpoon")
           require("telescope").load_extension("harpoon")
         end
+      },
+      { "adalessa/laravel.nvim",
+        config = function()
+          require('config/laravel_config')
+          require("telescope").load_extension "laravel"
+        end,
+        dependencies = {
+          { "nvim-lua/plenary.nvim" },
+          { "rcarriga/nvim-notify" },
+          { "nvim-telescope/telescope.nvim" },
+        },
+        keys = { "<leader>sl", "<Cmd>Telescope laravel<CR>", noremap = true, silent = true },
       },
       {
         "nvim-telescope/telescope-github.nvim",
@@ -331,19 +365,6 @@ local base_plugins = {
     end,
   },
 
-	{ "MunifTanjim/nui.nvim" },
-
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons"
-    },
-    event = "VimEnter",
-    branch = "main",
-    config = function()
-      require("config/neo-tree")
-    end,
-  },
 }
 
 

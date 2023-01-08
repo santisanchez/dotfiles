@@ -391,7 +391,7 @@ telescope_builtin.memo = function(opts)
     require("telescope.builtin").find_files({
         opts = opts,
         prompt_title = "MemoList",
-        find_command = { "fd", vim.g.memolist_path, "-type", "f", "-exec", "ls", "-1ta", "{}", "+" },
+        find_command = { "find", vim.g.memolist_path, "-type", "f", "-exec", "ls", "-1ta", "{}", "+" },
     })
 end
 
@@ -411,7 +411,15 @@ vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { de
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
-vim.api.nvim_set_keymap("n", "<Leader><Leader>", "<Cmd>Telescope my_mru<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Leader><Leader>", "<Cmd>Telescope my_mru<CR>", { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>sl", "<Cmd>Telescope laravel<CR>", { noremap = true, silent = true })
+
+vim.keymap.set("v",
+    "<leader>rr",
+    "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
+    { noremap = true }
+)
 -- vim.api.nvim_set_keymap(
 --     "n",
 --     "[_FuzzyFinder]<Leader>",
