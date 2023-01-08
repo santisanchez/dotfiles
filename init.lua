@@ -365,6 +365,12 @@ local base_plugins = {
     end,
   },
 
+  -- Local plugins
+  -- {
+  --   name = "laravel-completions",
+  --   dir = "~/Projects/neovim/laravel-completions",
+  --   dev = true
+  -- },
 }
 
 
