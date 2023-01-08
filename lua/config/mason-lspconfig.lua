@@ -87,26 +87,16 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 	buf_set_keymap("n", ";q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 	buf_set_keymap("n", ";f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-
 	-- require("lsp_signature").on_attach()
 	-- require("illuminate").on_attach(client)
 	require("nvim-navic").attach(client, bufnr)
     require "lsp-format-modifications".attach(client, bufnr, { format_on_save = true })
 end
-
 local lspconfig = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 require("mason-lspconfig").setup_handlers({
 	function(server_name)
 		lspconfig[server_name].setup({ capabilities = capabilities, on_attach = on_attach })
-	end,
-	["rust_analyzer"] = function()
-		local has_rust_tools, rust_tools = pcall(require, "rust-tools")
-		if has_rust_tools then
-			rust_tools.setup({ server = { capabilities = capabilities, on_attach = on_attach } })
-		else
-			lspconfig.rust_analyzer.setup({ capabilities = capabilities, on_attach = on_attach })
-		end
 	end,
 	["sumneko_lua"] = function()
 		lspconfig.sumneko_lua.setup({
@@ -117,6 +107,9 @@ require("mason-lspconfig").setup_handlers({
 					diagnostics = {
 						globals = { "vim" },
 					},
+                    completion = {
+                        workspaceWord = false, showWord = "Disable"
+                    }
 				},
 			},
 		})
