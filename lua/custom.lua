@@ -42,7 +42,6 @@ end
 M.parent = function ()
   local node = get_master_node()
   local parent = get_parent(node)
-  local bufnr = vim.api.nvim_get_current_buf()
   ts_utils.goto_node(parent)
 end
 
@@ -50,7 +49,6 @@ end
 M.extract_to_new_file = function ()
   local node = get_master_node()
   local parent = get_parent(node)
-  local bufnr = vim.api.nvim_get_current_buf()
   ts_utils.goto_node(parent)
   vim.cmd(':norm vat')
   vim.cmd(':lua require("react-extract").extract_to_new_file()')
@@ -59,7 +57,6 @@ end
 M.extract_to_current_file = function ()
   local node = get_master_node()
   local parent = get_parent(node)
-  local bufnr = vim.api.nvim_get_current_buf()
   ts_utils.goto_node(parent)
   vim.cmd(':norm vat')
   vim.cmd(':lua require("react-extract").extract_to_current_file()')
