@@ -28,17 +28,6 @@ vim.keymap.set('x', '>', '>gv', {silent=true,noremap=true})
 
 -- Replace this shitty word
 -- vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-local harpoon_mark = require("harpoon.mark")
-local harpoon_ui = require("harpoon.ui")
---harpoon
-vim.keymap.set('n', '<leader>a', harpoon_mark.add_file, { silent = true })
-vim.keymap.set('n', '<C-e>', harpoon_ui.toggle_quick_menu, { silent = true })
-vim.keymap.set('n', '-', harpoon_ui.nav_next, { silent = true })
-vim.keymap.set('n', '=', harpoon_ui.nav_prev, { silent = true })
-vim.keymap.set('n', '<F1>', ":lua require('harpoon.ui').nav_file(1)<CR>", { silent = true })
-vim.keymap.set('n', '<F2>', ":lua require('harpoon.ui').nav_file(2)<CR>", { silent = true })
-vim.keymap.set('n', '<F3>', ":lua require('harpoon.ui').nav_file(3)<CR>", { silent = true })
-vim.keymap.set('n', '<F4>', ":lua require('harpoon.ui').nav_file(4)<CR>", { silent = true })
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { silent = true })
 vim.keymap.set('t', '<leader>c', ':bd!<CR>', {silent=true, noremap=true})
 

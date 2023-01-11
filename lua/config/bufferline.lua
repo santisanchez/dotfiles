@@ -24,28 +24,28 @@ require("bufferline").setup({
 			return "(" .. count .. ")"
 		end,
 		-- NOTE: this will be called a lot so don't do any heavy processing here
-		custom_filter = function(buf_number)
-			-- filter out filetypes you don't want to see
-			if vim.bo[buf_number].filetype == "qf" then
-				return false
-			end
-			if vim.bo[buf_number].buftype == "terminal" then
-				return false
-			end
-			-- -- filter out by buffer name
-			if vim.fn.bufname(buf_number) == "" or vim.fn.bufname(buf_number) == "[No Name]" then
-				return false
-			end
-			if vim.fn.bufname(buf_number) == "[dap-repl]" then
-				return false
-			end
-			-- -- filter out based on arbitrary rules
-			-- -- e.g. filter out vim wiki buffer from tabline in your work repo
-			-- if vim.fn.getcwd() == "<work-repo>" and vim.bo[buf_number].filetype ~= "wiki" then
-			--   return true
-			-- end
-			return true
-		end,
+        -- custom_filter = function(buf_number)
+        -- 	-- filter out filetypes you don't want to see
+        -- 	if vim.bo[buf_number].filetype == "qf" then
+        -- 		return false
+        -- 	end
+        -- 	if vim.bo[buf_number].buftype == "terminal" then
+        -- 		return false
+        -- 	end
+        -- 	-- -- filter out by buffer name
+        -- 	if vim.fn.bufname(buf_number) == "" or vim.fn.bufname(buf_number) == "[No Name]" then
+        -- 		return false
+        -- 	end
+        -- 	if vim.fn.bufname(buf_number) == "[dap-repl]" then
+        -- 		return false
+        -- 	end
+        -- 	-- -- filter out based on arbitrary rules
+        -- 	-- -- e.g. filter out vim wiki buffer from tabline in your work repo
+        -- 	-- if vim.fn.getcwd() == "<work-repo>" and vim.bo[buf_number].filetype ~= "wiki" then
+        -- 	--   return true
+        -- 	-- end
+        -- 	return true
+        -- end,
 		-- offsets = {
 		--   {filetype = "NvimTree", text = "File Explorer", text_align = "left" | "center" | "right"}
 		-- },
@@ -72,8 +72,8 @@ require("bufferline").setup({
 	},
 })
 vim.keymap.set("n", "<Leader>b", "<Cmd>BufferLinePick<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "b[", "<Cmd>BufferLineCyclePrev<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "b]", "<Cmd>BufferLineCycleNext<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "-", "<Cmd>BufferLineCyclePrev<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "=", "<Cmd>BufferLineCycleNext<CR>", { noremap = true, silent = true })
 -- vim.keymap.set("n", "@", "<Cmd>BufferLineMovePrev<CR>", { noremap = true, silent = true })
 -- vim.keymap.set("n", "#", "<Cmd>BufferLineMoveNext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-S-h>", "<Cmd>BufferLineMovePrev<CR>", { noremap = true, silent = true })
