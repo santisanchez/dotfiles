@@ -11,14 +11,14 @@ vim.keymap.set('n', '<C-s>', ':wa<CR>', { silent = true })
 --cycle through windows
 vim.keymap.set("n","<Tab>","<C-w>w",{silent=true,noremap=true})
 -- move lines around
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+-- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+-- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- manual indent
 vim.keymap.set('x', '<', '<gv', {silent=true,noremap=true})
 vim.keymap.set('x', '>', '>gv', {silent=true,noremap=true})
 
 -- Join the next line and keep the cursor position
-vim.keymap.set("n", "J", "mzJ`z")
+-- vim.keymap.set("n", "J", "mzJ`z")
 
 --better clipboard
 -- vim.keymap.set("x", "<leader>p", [["_dP]])
@@ -92,5 +92,6 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+-- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+-- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+--
