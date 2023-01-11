@@ -73,6 +73,12 @@ local base_plugins = {
         },
     },
 
+    {
+        'folke/neodev.nvim',
+        config = function()
+            require('config.neodev_config')
+        end
+    },
     -- Language Server Protocol(LSP)
     {
         "neovim/nvim-lspconfig",
@@ -168,6 +174,7 @@ local base_plugins = {
 
     { "nvim-lua/plenary.nvim" },
     { "kkharji/sqlite.lua" },
+    { "rcarriga/nvim-notify" },
     {
         "nvim-telescope/telescope.nvim",
         event = { "VimEnter" },
@@ -299,7 +306,7 @@ local base_plugins = {
 
     { "rafamadriz/friendly-snippets", event = "InsertEnter" },
 
-    { 'nvim-treesitter/playground', cmd = "TSPlaygroundToggle" },
+    { 'nvim-treesitter/playground' },
 
     { "hrsh7th/cmp-cmdline", event = "VimEnter" },
     { "dmitmel/cmp-cmdline-history", event = "VimEnter" },
@@ -320,6 +327,12 @@ local base_plugins = {
         config = function()
             require("config/bufferline")
         end,
+    },
+    {
+        "drybalka/tree-climber.nvim",
+        config = function()
+            require('config/tree_climber')
+        end
     },
 
     -- Local plugins
