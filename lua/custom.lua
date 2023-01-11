@@ -1,4 +1,5 @@
 local ts_utils = require("nvim-treesitter.ts_utils")
+local notify = require('notify')
 local M = {}
 
 local file_history = function ()
@@ -9,16 +10,19 @@ end
 M.file_history = file_history
 
 local get_parent = function (node)
-  local prev = ts_utils.get_previous_node(node, true, true)
-  while(prev:parent() == node:parent()) do
-    node = prev
-    if(ts_utils.get_previous_node(prev, true, true) == nil) then
-      -- If we're at the last node...
-      return node
+    local prev = ts_utils.get_previous_node(node, true, true)
+    if prev == nil then
+        return node
     end
-    prev = ts_utils.get_previous_node(prev, true, true)
-  end
-  return node
+    while (prev:parent() == node:parent()) do
+        node = prev
+        if (ts_utils.get_previous_node(prev, true, true) == nil) then
+            -- If we're at the last node...
+            return node
+        end
+        prev = ts_utils.get_previous_node(prev, true, true)
+    end
+    return node
 end
 
 
@@ -39,9 +43,14 @@ local get_master_node = function ()
   return node
 end
 
+M.goto_master_node = function()
+    local master_node = get_master_node()
+    ts_utils.goto_node(master_node)
+end
 M.parent = function ()
   local node = get_master_node()
   local parent = get_parent(node)
+    notify(parent:type())
   ts_utils.goto_node(parent)
 end
 
