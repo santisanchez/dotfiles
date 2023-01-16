@@ -206,18 +206,18 @@ local base_plugins = {
                     require("telescope").load_extension("harpoon")
                 end
             },
-            { "adalessa/laravel.nvim",
-                config = function()
-                    require('config/laravel_config')
-                    require("telescope").load_extension "laravel"
-                end,
-                dependencies = {
-                    { "nvim-lua/plenary.nvim" },
-                    { "rcarriga/nvim-notify" },
-                    { "nvim-telescope/telescope.nvim" },
-                },
-                keys = { "<leader>sl", "<Cmd>Telescope laravel<CR>", noremap = true, silent = true },
-            },
+            -- { "adalessa/laravel.nvim",
+            --     config = function()
+            --         require('config/laravel_config')
+            --         require("telescope").load_extension "laravel"
+            --     end,
+            --     dependencies = {
+            --         { "nvim-lua/plenary.nvim" },
+            --         { "rcarriga/nvim-notify" },
+            --         { "nvim-telescope/telescope.nvim" },
+            --     },
+            --     keys = { "<leader>sl", "<Cmd>Telescope laravel<CR>", noremap = true, silent = true },
+            -- },
             {
                 "nvim-telescope/telescope-github.nvim",
                 config = function()
@@ -329,17 +329,55 @@ local base_plugins = {
         end,
     },
     {
+        "roobert/bufferline-cycle-windowless.nvim",
+        dependencies = {
+            { "akinsho/bufferline.nvim" },
+        },
+        config = function()
+            require("bufferline-cycle-windowless").setup({
+                -- whether to start in enabled or disabled mode
+                default_enabled = true,
+            })
+        end,
+    },
+    {
         "drybalka/tree-climber.nvim",
         config = function()
             require('config/tree_climber')
         end
     },
 
+    {
+        "folke/noice.nvim",
+        config = function()
+            require("noice").setup({
+                lsp = {
+                    -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+                    override = {
+                        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                        ["vim.lsp.util.stylize_markdown"] = true,
+                        ["cmp.entry.get_documentation"] = true,
+                    },
+                },
+                -- you can enable a preset for easier configuration
+                presets = {
+                    bottom_search = true, -- use a classic bottom cmdline for search
+                    command_palette = true, -- position the cmdline and popupmenu together
+                    long_message_to_split = true, -- long messages will be sent to a split
+                    inc_rename = false, -- enables an input dialog for inc-rename.nvim
+                    lsp_doc_border = false, -- add a border to hover docs and signature help
+                },
+            })
+        end,
+    },
     -- Local plugins
     -- {
-    --   name = "laravel-completions",
-    --   dir = "~/Projects/neovim/laravel-completions",
-    --   dev = true
+    --     name = "refnostic",
+    --     dir = "~/Projects/neovim/refnostic",
+    --     config = function()
+    --         require('refnostic').setup()
+    --     end,
+    --     dev = true
     -- },
 }
 
