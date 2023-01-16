@@ -396,7 +396,8 @@ telescope_builtin.memo = function(opts)
 end
 
 -- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>e', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+vim.keymap.set('n', '<leader><Leader>', require('telescope.builtin').oldfiles,
+    { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
@@ -411,9 +412,9 @@ vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { de
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
-vim.keymap.set("n", "<Leader><Leader>", "<Cmd>Telescope my_mru<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Leader>e", "<Cmd>Telescope my_mru<CR>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>sl", "<Cmd>Telescope laravel<CR>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<leader>sl", "<Cmd>Telescope laravel<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("v",
     "<leader>rr",
