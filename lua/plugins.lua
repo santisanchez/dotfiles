@@ -88,12 +88,6 @@ local base_plugins = {
             require("config/nvim-lspconfig")
         end,
         dependencies = {
-            -- {
-            --   "folke/neoconf.nvim",
-            --   config = function()
-            --     require("config/neoconf")
-            --   end,
-            -- },
             {
                 "williamboman/mason-lspconfig.nvim",
                 config = function()
@@ -275,11 +269,13 @@ local base_plugins = {
     { "hrsh7th/cmp-cmdline", event = "VimEnter" },
     { "dmitmel/cmp-cmdline-history", event = "VimEnter" },
 
-    { "napmn/react-extract.nvim",
-        keys = { "<leader>rp", ":lua require('custom').extract_to_new_file()<CR>" },
+    {
+        "napmn/react-extract.nvim",
+        keys = { "<leader>rp", "<cmd>lua require('custom').extract_to_new_file()<CR>" },
         config = function()
             require("react-extract").setup()
-        end },
+        end
+    },
 
 
     {
