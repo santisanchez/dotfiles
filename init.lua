@@ -10,7 +10,7 @@ local disabled_built_ins = {
   "netrwPlugin",
   "netrwSettings",
   "netrwFileHandlers",
-  -- "matchit",
+  "matchit",
   "matchparen",
   "tutor",
   "tar",
@@ -50,6 +50,7 @@ vim.g.maplocalleader = ' '
 
 local plugins = require('plugins')
 require("lazy").setup(plugins)
+
 require('options')
 require('autocmds')
 require('mappings')

@@ -4,6 +4,7 @@ hi link NeoTreeDirectoryName Directory
 hi link NeoTreeDirectoryIcon NeoTreeDirectoryName
 ]])
 
+vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 require("neo-tree").setup({
     close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
     popup_border_style = "rounded",
@@ -66,7 +67,7 @@ require("neo-tree").setup({
         -- time the current file is changed while the tree is open.
         use_libuv_file_watcher = false, -- This will use the OS level file watchers
         -- to detect changes instead of relying on nvim autocmd events.
-        hijack_netrw_behavior = "disabled", -- netrw disabled, opening a directory opens neo-tree
+        hijack_netrw_behavior = "open_current", -- netrw disabled, opening a directory opens neo-tree
         -- in whatever position is specified in window.position
         -- "open_split",  -- netrw disabled, opening a directory opens within the
         -- window like netrw would, regardless of window.position

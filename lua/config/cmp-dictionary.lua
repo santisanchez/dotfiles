@@ -1,5 +1,5 @@
 local file = vim.fn.stdpath("data") .. "/zsh/dictionary/my.dict"
-local dic = {}
+local dic = ""
 if vim.fn.filereadable(file) ~= 0 then
 	dic = file
 end

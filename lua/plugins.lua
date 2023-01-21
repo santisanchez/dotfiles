@@ -15,7 +15,7 @@ local base_plugins = {
         end,
     },
 
-    { "MunifTanjim/nui.nvim" },
+    { "MunifTanjim/nui.nvim", event = "VimEnter" },
 
     {
         "nvim-neo-tree/neo-tree.nvim",
@@ -23,9 +23,9 @@ local base_plugins = {
             "nvim-tree/nvim-web-devicons"
         },
         branch = "main",
-        keys = {
-            { "<leader>t", "<cmd>Neotree toggle<cr>", desc = "NeoTree" },
-        },
+        -- keys = {
+        --     { "<leader>t", "<cmd>Neotree toggle<cr>", desc = "NeoTree" },
+        -- },
         config = function()
             require("config/neo-tree")
         end,
@@ -75,6 +75,7 @@ local base_plugins = {
 
     {
         'folke/neodev.nvim',
+        event = "VimEnter",
         config = function()
             require('config.neodev_config')
         end
@@ -174,10 +175,14 @@ local base_plugins = {
 
     { "nvim-lua/plenary.nvim" },
     { "kkharji/sqlite.lua" },
-    { "rcarriga/nvim-notify" },
+    { "rcarriga/nvim-notify", event = "BufReadPre" },
     {
         "nvim-telescope/telescope.nvim",
         event = { "VimEnter" },
+        keys = {
+            { "<leader>e", "<Cmd>Telescope my_mru<CR>", desc = "Telescope recent files on current dir", noremap = true,
+                silent = true },
+        },
         config = function()
             require("config/telescope_config")
         end,
@@ -206,46 +211,10 @@ local base_plugins = {
                     require("telescope").load_extension("harpoon")
                 end
             },
-            -- { "adalessa/laravel.nvim",
-            --     config = function()
-            --         require('config/laravel_config')
-            --         require("telescope").load_extension "laravel"
-            --     end,
-            --     dependencies = {
-            --         { "nvim-lua/plenary.nvim" },
-            --         { "rcarriga/nvim-notify" },
-            --         { "nvim-telescope/telescope.nvim" },
-            --     },
-            --     keys = { "<leader>sl", "<Cmd>Telescope laravel<CR>", noremap = true, silent = true },
-            -- },
-            {
-                "nvim-telescope/telescope-github.nvim",
-                config = function()
-                    require("telescope").load_extension("gh")
-                end,
-            },
             {
                 "nvim-telescope/telescope-ui-select.nvim",
                 config = function()
                     require("telescope").load_extension("ui-select")
-                end,
-            },
-            {
-                "crispgm/telescope-heading.nvim",
-                config = function()
-                    require("telescope").load_extension("heading")
-                end,
-            },
-            {
-                "LinArcX/telescope-changes.nvim",
-                config = function()
-                    require("telescope").load_extension("changes")
-                end,
-            },
-            {
-                "nvim-telescope/telescope-live-grep-args.nvim",
-                config = function()
-                    require("telescope").load_extension("live_grep_args")
                 end,
             },
             {
@@ -258,15 +227,6 @@ local base_plugins = {
                 end,
             },
             { "nvim-telescope/telescope-symbols.nvim" },
-            {
-                "nvim-telescope/telescope-media-files.nvim",
-                enabled = function()
-                    return vim.fn.executable("ueberzug")
-                end,
-                config = function()
-                    require("telescope").load_extension("media_files")
-                end,
-            },
             {
                 'nvim-telescope/telescope-fzf-native.nvim',
                 build = 'make',
@@ -283,6 +243,7 @@ local base_plugins = {
     { "nathom/filetype.nvim" },
     {
         'hoschi/yode-nvim',
+        event = "VimEnter",
         dependencies = { { 'nvim-lua/plenary.nvim' } },
         config = function()
             require('yode-nvim').setup({})
@@ -306,7 +267,10 @@ local base_plugins = {
 
     { "rafamadriz/friendly-snippets", event = "InsertEnter" },
 
-    { 'nvim-treesitter/playground' },
+    {
+        'nvim-treesitter/playground',
+        cmd = "TSPlaygroundToggle"
+    },
 
     { "hrsh7th/cmp-cmdline", event = "VimEnter" },
     { "dmitmel/cmp-cmdline-history", event = "VimEnter" },
@@ -342,6 +306,7 @@ local base_plugins = {
     },
     {
         "drybalka/tree-climber.nvim",
+        event = "VimEnter",
         config = function()
             require('config/tree_climber')
         end
@@ -362,7 +327,7 @@ local base_plugins = {
                 -- you can enable a preset for easier configuration
                 presets = {
                     bottom_search = true, -- use a classic bottom cmdline for search
-                    command_palette = true, -- position the cmdline and popupmenu together
+                    command_palette = false, -- position the cmdline and popupmenu together
                     long_message_to_split = true, -- long messages will be sent to a split
                     inc_rename = false, -- enables an input dialog for inc-rename.nvim
                     lsp_doc_border = false, -- add a border to hover docs and signature help
@@ -370,15 +335,22 @@ local base_plugins = {
             })
         end,
     },
-    -- Local plugins
-    -- {
-    --     name = "refnostic",
-    --     dir = "~/Projects/neovim/refnostic",
-    --     config = function()
-    --         require('refnostic').setup()
-    --     end,
-    --     dev = true
-    -- },
+    { "folke/twilight.nvim", event = "VimEnter",
+        config = function()
+            require("twilight").setup {
+            }
+        end
+    },
+    { "folke/zen-mode.nvim",
+        event = "VimEnter",
+        config = function()
+            require('zen-mode').setup {}
+        end
+    },
+    {
+        "chrisgrieser/nvim-recorder",
+        config = function() require("recorder").setup() end,
+    },
 }
 
 return base_plugins

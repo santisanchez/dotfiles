@@ -212,9 +212,18 @@ cmp.setup.cmdline(":", {
       c = cmp.mapping.abort(),
     },
   },
-  sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" }, { { name = "cmdline_history" } } }),
+    sources = cmp.config.sources(
+        { { name = "path" } },
+        { {
+            name = "cmdline",
+            option = {
+                ignore_cmds = { 'Man', '!' }
+            }
+        } },
+        { { name = "cmdline_history" } }
+    ),
 })
 
 -- autopairs
-local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+-- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+-- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
