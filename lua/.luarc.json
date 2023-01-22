@@ -72,6 +72,7 @@
         "/Users/santiagoosorio/.local/share/nvim/lazy/telescope-ui-select.nvim",
         "/Users/santiagoosorio/.local/share/nvim/lazy/lazy.nvim",
         "/Users/santiagoosorio/.local/share/nvim/lazy/telescope-fzf-native.nvim",
-        "${3rd}/luassert/library"
+        "${3rd}/luassert/library",
+        "${3rd}/luv/library"
     ]
 }

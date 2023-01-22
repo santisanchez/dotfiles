@@ -231,6 +231,21 @@ local base_plugins = {
             },
         },
     },
+    {
+        "adalessa/laravel.nvim",
+        dependencies = {
+            "rcarriga/nvim-notify",
+            "nvim-telescope/telescope.nvim",
+        },
+        cmd = { "Sail", "Artisan", "Composer" },
+        keys = {
+            { "<leader>pa", ":Artisan<cr>" },
+        },
+        config = function()
+            require("laravel").setup()
+            require("telescope").load_extension("laravel")
+        end
+    },
     -- Fuzzy Finder Algorithm which dependencies local dependencies to be built. Only load if `make` is available,
 
     { 'folke/tokyonight.nvim' },
