@@ -1,9 +1,8 @@
 -- System Clipboard
 -- vim.opt.clipboard = 'unnamedplus'
-vim.cmd [[colorscheme onedark]]
 vim.opt.showtabline = 2
 
-vim.opt.guifont = "FiraCode NF:h15"
+vim.opt.guifont = "ComicMono NF:h15"
 -- Offset on scroll
 vim.opt.scrolloff = 5
 vim.opt.smartindent = true
@@ -43,19 +42,9 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
--- vim.cmd [[colorscheme tokyonight-storm]]
+vim.g.gruvbox_material_enable_italic = 1
+vim.g.gruvbox_material_better_performance = 1
+vim.cmd [[colorscheme gruvbox-material]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menu,menuone,noselect'
-
-
--- local null_ls = require("null-ls")
--- local laravel_actions = require("laravel.code-actions")
--- null_ls.setup({
---     sources = {
---         -- null_ls.builtins.formatting.prettier,
---         null_ls.builtins.code_actions.refactoring,
---         null_ls.builtins.code_actions.gitsigns,
---         -- laravel_actions.relationships
---     },
--- })

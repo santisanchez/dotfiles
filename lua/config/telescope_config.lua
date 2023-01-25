@@ -414,8 +414,6 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 
 vim.keymap.set("n", "<Leader>e", "<Cmd>Telescope my_mru<CR>", { noremap = true, silent = true })
 
--- vim.keymap.set("n", "<leader>sl", "<Cmd>Telescope laravel<CR>", { noremap = true, silent = true })
-
 vim.keymap.set("v",
     "<leader>rr",
     "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",

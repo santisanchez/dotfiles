@@ -141,7 +141,6 @@ local base_plugins = {
         end,
     },
 
-    'navarasu/onedark.nvim', -- Theme inspired by Atom
     {
         "nvim-lualine/lualine.nvim",
         event = "VimEnter",
@@ -231,24 +230,6 @@ local base_plugins = {
             },
         },
     },
-    {
-        "adalessa/laravel.nvim",
-        dependencies = {
-            "rcarriga/nvim-notify",
-            "nvim-telescope/telescope.nvim",
-        },
-        cmd = { "Sail", "Artisan", "Composer" },
-        keys = {
-            { "<leader>pa", ":Artisan<cr>" },
-        },
-        config = function()
-            require("laravel").setup()
-            require("telescope").load_extension("laravel")
-        end
-    },
-    -- Fuzzy Finder Algorithm which dependencies local dependencies to be built. Only load if `make` is available,
-
-    { 'folke/tokyonight.nvim' },
     { "nathom/filetype.nvim" },
     {
         'hoschi/yode-nvim',
@@ -327,6 +308,7 @@ local base_plugins = {
         "folke/noice.nvim",
         config = function()
             require("noice").setup({
+                background_colour = "#000000",
                 lsp = {
                     -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
                     override = {
@@ -334,6 +316,16 @@ local base_plugins = {
                         ["vim.lsp.util.stylize_markdown"] = true,
                         ["cmp.entry.get_documentation"] = true,
                     },
+                },
+                routes = {
+                    {
+                        filter = {
+                            event = "msg_show",
+                            kind = "",
+                            find = "written",
+                        },
+                        opts = { skip = true }
+                    }
                 },
                 -- you can enable a preset for easier configuration
                 presets = {
@@ -362,6 +354,27 @@ local base_plugins = {
         "chrisgrieser/nvim-recorder",
         config = function() require("recorder").setup() end,
     },
+    -- {
+    --     'Exafunction/codeium.vim',
+    --     config = function()
+    --         require("config.codeium_config")
+    --         -- Change '<C-g>' here to any keycode you like.
+    --         vim.keymap.set('i', '<c-cr>', function()
+    --             return vim.fn['codeium#Accept']()
+    --         end, { expr = true })
+    --     end
+    -- },
+
+    -- Database
+    { 'tpope/vim-dadbod' },
+    { 'kristijanhusak/vim-dadbod-ui' },
+    { 'kristijanhusak/vim-dadbod-completion' },
+
+    { 'folke/tokyonight.nvim' },
+
+    { 'navarasu/onedark.nvim' },
+
+    { 'sainnhe/gruvbox-material' }
 }
 
 return base_plugins
