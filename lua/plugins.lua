@@ -368,7 +368,6 @@ local base_plugins = {
     -- Database
     { 'tpope/vim-dadbod' },
     { 'kristijanhusak/vim-dadbod-ui' },
-    { 'kristijanhusak/vim-dadbod-completion' },
 
     { 'folke/tokyonight.nvim' },
 
