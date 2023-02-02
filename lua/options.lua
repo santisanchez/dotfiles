@@ -12,6 +12,7 @@ vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
+vim.cmd "set formatoptions-=cro"
 
 vim.opt.lazyredraw = true
 -- Relative line numbers
@@ -42,9 +43,9 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.g.gruvbox_material_enable_italic = 1
-vim.g.gruvbox_material_better_performance = 1
-vim.cmd [[colorscheme gruvbox-material]]
+-- vim.g.gruvbox_material_enable_italic = 1
+-- vim.g.gruvbox_material_better_performance = 1
+vim.cmd [[colorscheme onedark]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menu,menuone,noselect'

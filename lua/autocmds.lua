@@ -23,9 +23,9 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 -- autocmd FileType sql setlocal omnifunc=vim_dadbod_completion#omni
 
-local db_group = vim.api.nvim_create_augroup('DbCompletion', { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-    group = db_group,
-    pattern = "mysql",
-    command = [[lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })]],
-})
+-- local db_group = vim.api.nvim_create_augroup('DbCompletion', { clear = true })
+-- vim.api.nvim_create_autocmd("FileType", {
+--     group = db_group,
+--     pattern = "mysql",
+--     command = [[lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })]],
+-- })
