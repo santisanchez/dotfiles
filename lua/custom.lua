@@ -1,5 +1,5 @@
 local ts_utils = require("nvim-treesitter.ts_utils")
-local notify = require('notify')
+-- local notify = require('notify')
 local M = {}
 
 local file_history = function ()
