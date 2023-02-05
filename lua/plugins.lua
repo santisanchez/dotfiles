@@ -185,7 +185,7 @@ local base_plugins = {
 
   { "nvim-lua/plenary.nvim" },
   { "kkharji/sqlite.lua" },
-  -- { "rcarriga/nvim-notify", event = "BufReadPre" },
+  { "rcarriga/nvim-notify", event = "BufReadPre" },
   {
     "nvim-telescope/telescope.nvim",
     event = { "VimEnter" },

@@ -1,3 +1,0 @@
--- local request = vim.lsp.buf_request_sync(0, 'textDocument/definition', {})
---
--- vim.pretty_print(request)
