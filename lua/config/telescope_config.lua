@@ -243,9 +243,7 @@ require("telescope").setup({
         buffers = {
             mappings = {
                 i = {
-                    ["<C-j>"] = actions.move_selection_next,
-                    ["<C-k>"] = actions.move_selection_previous,
-                    ["<C-d>"] = actions.delete_buffer
+                    ["<C-d>"] = actions.delete_buffer,
                 }
             }
         }
