@@ -159,13 +159,13 @@ require("telescope").setup({
         color_devicons = true,
         use_less = true,
         scroll_strategy = "cycle",
-        set_env = { ["COLORTERM"] = "truecolor" }, -- default { }, currently unsupported for shells like cmd.exe / powershell.exe
+        -- set_env = { ["COLORTERM"] = "truecolor" }, -- default { }, currently unsupported for shells like cmd.exe / powershell.exe
         -- file_previewer = require'telescope.previewers'.cat.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_cat.new`
         -- grep_previewer = require'telescope.previewers'.vimgrep.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_vimgrep.new`
         -- qflist_previewer = require'telescope.previewers'.qflist.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_qflist.new`
 
         -- Developer configurations: Not meant for general override
-        buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
+        -- buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
         mappings = {
             n = {
                 ["<C-t>"] = action_layout.toggle_preview,
@@ -239,6 +239,17 @@ require("telescope").setup({
             case_mode = "smart_case",
         },
     },
+    pickers = {
+        buffers = {
+            mappings = {
+                i = {
+                    ["<C-j>"] = actions.move_selection_next,
+                    ["<C-k>"] = actions.move_selection_previous,
+                    ["<C-d>"] = actions.delete_buffer
+                }
+            }
+        }
+    }
 })
 
 local function remove_duplicate_paths(tbl, cwd)
@@ -395,6 +406,14 @@ telescope_builtin.memo = function(opts)
     })
 end
 
+telescope_builtin.buffer_search = function(opts)
+    require("telescope.builtin").buffers({
+        opts = opts,
+        sort_mru = true,
+        ignore_current_buffer = true,
+        previewer = false
+    })
+end
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader><Leader>', require('telescope.builtin').oldfiles,
     { desc = '[?] Find recently opened files' })
@@ -406,6 +425,7 @@ vim.keymap.set('n', '<leader>/', function()
   })
 end, { desc = '[/] Fuzzily search in current buffer]' })
 
+vim.keymap.set('n', '<leader>se', require('telescope.builtin').buffer_search, { desc = '[S]earch [B]uffers' })
 vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
@@ -456,7 +476,6 @@ vim.keymap.set("v",
 --     { noremap = true }
 -- )
 -- vim.api.nvim_set_keymap("n", "[_FuzzyFinder]s", "<Cmd>Telescope live_grep<CR>", { noremap = true, silent = true })
--- vim.api.nvim_set_keymap("n", "[_FuzzyFinder]b", "<Cmd>Telescope buffers<CR>", { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap("n", "[_FuzzyFinder]h", "<Cmd>Telescope help_tags<CR>", { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap("n", "[_FuzzyFinder]c", "<Cmd>Telescope commands<CR>", { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap("n", "[_FuzzyFinder]t", "<Cmd>Telescope treesitter<CR>", { noremap = true, silent = true })

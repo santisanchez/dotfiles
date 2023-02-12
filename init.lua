@@ -6,7 +6,7 @@ local disabled_built_ins = {
   "gzip",
   "logipat",
   "tarPlugin",
-  "netrw",
+  -- "netrw",
   "netrwPlugin",
   "netrwSettings",
   "netrwFileHandlers",

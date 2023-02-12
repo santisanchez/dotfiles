@@ -46,12 +46,12 @@ local function selected_line()
 end
 
 local sections_1 = {
-	lualine_a = { "mode" },
-    lualine_b = { { "filetype", icon_only = true }, { "filename", path = 1 }, { get_cwd } },
+    lualine_a = { { "mode", upper = true } },
+    lualine_b = { { "filename", path = 1 }, { get_cwd } },
 	lualine_c = { { 'require("nvim-navic").get_location()', cond = is_available_navic } },
 	lualine_x = { "require'lsp-status'.status()", "diagnostics", "overseer" },
     lualine_y = { "branch", "diff", },
-    lualine_z = { "location", selected_line },
+    lualine_z = {}
     -- lualine_y = {
     --     { require("recorder").displaySlots },
     -- },
@@ -66,7 +66,7 @@ local sections_2 = {
 	lualine_c = { { "filetype", icon_only = true }, { "filename", path = 1 } },
 	lualine_x = { "encoding", "fileformat", "filetype" },
     lualine_y = { "filesize", "progress" },
-    lualine_z = { "location" },
+    -- lualine_z = { "location" },
 }
 
 vim.keymap.set({ "n" }, "!", function()
@@ -193,11 +193,11 @@ require("lualine").setup({
 	options = {
 		icons_enabled = true,
         theme = "onedark",
-		component_separators = { left = "", right = "" },
-		section_separators = { left = "", right = "" },
 		disabled_filetypes = {},
 		always_divide_middle = true,
 		globalstatus = true,
+        -- section_separators = { left = '', right = '' },
+        -- component_separators = { left = '', right = '' }
 	},
 	sections = sections_1,
 	inactive_sections = {
@@ -209,5 +209,5 @@ require("lualine").setup({
 		lualine_z = {},
 	},
 	tabline = {},
-	extensions = { "quickfix", my_toggleterm, "symbols-outline", my_extension },
+    extensions = { "quickfix", "fugitive", my_toggleterm, "symbols-outline", my_extension },
 })

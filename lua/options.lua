@@ -1,9 +1,10 @@
 -- System Clipboard
 -- vim.opt.clipboard = 'unnamedplus'
-vim.opt.showtabline = 2
+vim.opt.showtabline = 0
 
-vim.opt.guifont = "ComicMono NF:h15"
+vim.opt.guifont = "FiraCode Nerd Font Mono:h15"
 -- Offset on scroll
+
 vim.opt.scrolloff = 5
 vim.opt.smartindent = true
 vim.opt.cursorline = true
@@ -12,7 +13,7 @@ vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
-vim.opt.formatoptions = { n = true, j = true, t = true, c = false, r = false, o = false }
+-- vim.opt.formatoptions = { n = true, j = true, t = true, c = false, r = false, o = false }
 -- vim.cmd "set formatoptions-=cro"
 
 vim.opt.lazyredraw = true
@@ -21,7 +22,7 @@ vim.wo.relativenumber = true
 
 -- Set highlight on search
 vim.o.hlsearch = false
-
+--
 -- Make line numbers default
 vim.wo.number = true
 
@@ -46,7 +47,7 @@ vim.wo.signcolumn = 'yes'
 vim.o.termguicolors = true
 -- vim.g.gruvbox_material_enable_italic = 1
 -- vim.g.gruvbox_material_better_performance = 1
-vim.cmd [[colorscheme onedark]]
 
+vim.cmd [[ colorscheme onedark ]]
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menu,menuone,noselect'
